@@ -1,0 +1,15 @@
+body {
+    background-color: #fceaec;
+    --text-color: #ee545e;
+    text-align: center;
+}
+
+h1, h3 {
+    color: var(--text-color);
+}
+
+/*fix image size on screen */
+img {
+    width: 250px;
+    height: auto;
+}
