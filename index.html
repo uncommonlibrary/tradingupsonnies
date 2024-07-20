@@ -28,7 +28,6 @@
     <section id = "startResult">
         <h3>Hmm, you're not sure if you really like this one.</h3>
         <h3>Let's see if you can trade it up!</h3>
-        <!-- <div>(Insert image of your blind box result)</div> -->
          <img id = "startSonnyImg">
          <br>
         <button id = "startTradeB">Trade</button>
@@ -37,11 +36,18 @@
     <section id = "firstTrade">
         <h1>TRADE EVENT</h1>
         <h3>Someone responded to your trade request! Here's what they have up for trade. Choose wisely!</h3>
-        <img id ="firstT1">
-        <img id ="firstT2">
-        <img id = "firstT3">
-        <br>
-        <button>Confirm</button> <!--add to inventory-->
+        <div class = "tradeOption">
+            <img id ="firstT1">
+            <button class = "firstTradeB" id="firstT1B">Select</button>
+        </div>
+        <div class = "tradeOption">
+            <img id ="firstT2">
+            <button class = "firstTradeB" id="firstT2B">Select</button>
+        </div>
+        <div class = "tradeOption">
+            <img id = "firstT3">
+            <button class = "firstTradeB" id="firstT3B">Select</button>
+        </div>
     </section>
 
     <section id = "firstTradeCont"> <!--your inventory (should only have one sonny)-->

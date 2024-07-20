@@ -8,8 +8,26 @@ h1, h3 {
     color: var(--text-color);
 }
 
-/*fix image size on screen */
+/*fix image size on screen -not working how to adjust*/
 img {
     width: 250px;
     height: auto;
+}
+
+.tradeOption {
+    display: inline-block; /*so pics are side by side*/
+    position: relative; /*makes this the reference point for absolutely positioned trade button*/
+}
+
+.firstTradeB {
+    display: none;
+    position:absolute;
+    text-align: center;
+    top: 50%; /*top edge of trade button is at 50% height of trade option*/
+    left: 50%; /*left edge of button is 50% width of trade option*/
+    transform: translate(-50%, -50%);  /*offset the element by 50% of its own width and height to center properly in trade option*/
+}
+
+.tradeOption:hover .firstTradeB {
+    display: block; /*shows trade button when hover over trade option*/
 }

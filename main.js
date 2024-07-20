@@ -1,7 +1,10 @@
 /*-------------------------------- Constants --------------------------------*/
 
 /*----------------------------- Variables (state) ---------------------------*/
-
+// const game = {
+//   inventory: []
+// }
+const inventory = [];
 /*------------------------ Cached Element References ------------------------*/
 
 /*------------------------------- Game Pages --------------------------------*/
@@ -66,7 +69,9 @@ startPullB.addEventListener("click", () => {
   firstTradeContP.style.display = "none";
   firstTradeSuccessP.style.display = "none";
   console.log(startSonny);
-  startSonnyImg.src = startSonny.image; //goes into start sonny object and take the image property
+  inventory.push(startSonny); /*adding selected startSonny into player inventory*/
+  console.log("Current Inventory:", inventory);
+  startSonnyImg.src = startSonny.image; //goes into start sonny object and take the image property to display
 });
 
 //doing first trade
@@ -88,3 +93,44 @@ startTradeB.addEventListener("click", () => {
   firstTrade2Img.src = firstTrade2.image;
   firstTrade3Img.src = firstTrade3.image;
 });
+
+const firstTradeB = document.querySelectorAll(".firstTradeB");
+firstTradeB.forEach((buttonEl, index) => {
+  //loops through each trade button and assigns an event listener. index is the position of each trade button in that Node List "firstTradeB" https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+  buttonEl.addEventListener("click", () => {
+    let firstTradeChoice;
+    switch (
+      index //if the index matches, it will assign the choice to that randomly selected sonny.
+    ) {
+      case 0:
+        firstTradeChoice = firstTrade1;
+        break;
+      case 1:
+        firstTradeChoice = firstTrade2;
+        break;
+      case 2:
+        firstTradeChoice = firstTrade3;
+        break;
+    }
+    titleP.style.display = "none";
+    startP.style.display = "none";
+    startResultP.style.display = "none";
+    firstTradeP.style.display = "none";
+    firstTradeContP.style.display = "block";
+    firstTradeSuccessP.style.display = "none";
+    console.log("Chosen Sonny:", firstTradeChoice); //logs the choice made
+    inventory.push(firstTradeChoice); //adds the choice to inventory
+    console.log("Current Inventory:", inventory);
+    //display current inventory here(since cont. page is displayed after click)
+    //need to pull image link from inventory object and insert in newly created DOM element
+    for (i = 0; i < inventory.length; i++) {
+      //iterate through the inventory array
+      const inventoryImgEl = document.createElement("img"); //create the number of img els corresponding to the amt of sonnies in inventory
+      inventoryImgEl.src = inventory[i].image; //add src attribute to newly create img element and assign the image URL taken from the specific inventory[index]
+      //inventoryImgEl.alt = i.alt; -> this one fill in later when i get the alts.
+      firstTradeContP.appendChild(inventoryImgEl); //add the img element with the link to the page
+    }
+  });
+});
+
+//first trade: choosing YOUR own sonny
