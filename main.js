@@ -17,7 +17,7 @@ const firstTradeSuccessP = document.getElementById("firstTradeSuccess");
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-/*------------------------Functions for Random Pulls-------------------------*/
+/*----------------------------------Functions--------------------------------*/
 //to pull only regular sonny angels
 const regularSAs = sonnyAngels.filter((angel) => angel.type === "regular"); //filters for only regular SAs
 function getRandomRegSA() {
@@ -31,6 +31,12 @@ function getRandomSA() {
   const randomSAIndex = Math.floor(Math.random() * sonnyAngels.length); //chooses random index in all
   selectedSATrade = sonnyAngels[randomSAIndex];
   return selectedSATrade; //outputs the selected sonny Object
+}
+
+//function to log blindbox sonny to inventory
+function addRandomSonny(randomSonny) {
+  inventory.push(randomSonny); //adding randomly selected sonny into player inventory
+  console.log("Current Inventory:", inventory);
 }
 
 /*--------------------- Functions for Page Displays -------------------------*/
@@ -57,31 +63,45 @@ playB.addEventListener("click", () => {
   firstTradeSuccessP.style.display = "none";
 });
 
-//doing your first pull
+/*-------------stuff related to first pull----------------*/
 const startPullB = document.getElementById("startPullB");
 const startSonny = getRandomRegSA();
 const startSonnyImg = document.getElementById("startSonnyImg");
-startPullB.addEventListener("click", () => {
+
+//function to display the Blind Box screen
+function displayStartResultP() {
   titleP.style.display = "none";
   startP.style.display = "none";
   startResultP.style.display = "block";
   firstTradeP.style.display = "none";
   firstTradeContP.style.display = "none";
   firstTradeSuccessP.style.display = "none";
-  console.log(startSonny);
-  inventory.push(startSonny); /*adding selected startSonny into player inventory*/
-  console.log("Current Inventory:", inventory);
-  startSonnyImg.src = startSonny.image; //goes into start sonny object and take the image property to display
-});
+}
 
-//doing first trade
+//function to show result from blind box (only for start sonny)
+function displayStartSonnyResultImg(randomSonny) {
+  startSonnyImg.src = randomSonny.image; //goes into start sonny object and take the image property to display
+}
+
+//function to handle blindbox button click (only for starting pull)
+function handleStartPullButtonClick() {
+  displayStartResultP();
+  addRandomSonny(startSonny); //starting sonny is limited to regulars only
+  displayStartSonnyResultImg(startSonny);
+}
+
+//event listener for start pull button click!
+startPullB.addEventListener("click", handleStartPullButtonClick);
+
+//------------------stuff relating to first trade-----------------------
 const startTradeB = document.getElementById("startTradeB");
 const firstTrade1Img = document.getElementById("firstT1"); //selecting the IMAGE object in DOM
 const firstTrade2Img = document.getElementById("firstT2");
 const firstTrade3Img = document.getElementById("firstT3");
-const firstTrade1 = getRandomSA(); //this is one object randomly selected
+const firstTrade1 = getRandomSA(); //this is one object randomly selected. this one got chance to get secret or limited as well
 const firstTrade2 = getRandomSA(); //this is another object randomly selected
 const firstTrade3 = getRandomSA();
+
 startTradeB.addEventListener("click", () => {
   titleP.style.display = "none";
   startP.style.display = "none";
@@ -125,10 +145,22 @@ firstTradeB.forEach((buttonEl, index) => {
     //need to pull image link from inventory object and insert in newly created DOM element
     for (i = 0; i < inventory.length; i++) {
       //iterate through the inventory array
+      const inventoryOptionEl = document.createElement("div");
+      inventoryOptionEl.classList.add("inventoryOption");
+
       const inventoryImgEl = document.createElement("img"); //create the number of img els corresponding to the amt of sonnies in inventory
       inventoryImgEl.src = inventory[i].image; //add src attribute to newly create img element and assign the image URL taken from the specific inventory[index]
+      inventoryImgEl.classList.add("inventoryImg");
       //inventoryImgEl.alt = i.alt; -> this one fill in later when i get the alts.
-      firstTradeContP.appendChild(inventoryImgEl); //add the img element with the link to the page
+      inventoryOptionEl.appendChild(inventoryImgEl); //add the img element with the link to the page
+
+      //add select button to every image in inventory
+      const inventorySelectButtonEl = document.createElement("button");
+      inventorySelectButtonEl.classList.add("inventorySelectB"); //add class to select button
+      inventorySelectButtonEl.innerText = "Give this up!";
+      inventoryOptionEl.appendChild(inventorySelectButtonEl);
+      //add the div to the section
+      firstTradeContP.appendChild(inventoryOptionEl);
     }
   });
 });

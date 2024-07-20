@@ -31,3 +31,21 @@ img {
 .tradeOption:hover .firstTradeB {
     display: block; /*shows trade button when hover over trade option*/
 }
+
+.inventoryOption {
+    display: inline-block;
+    position: relative;
+}
+
+.inventorySelectB {
+    display: none;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.inventoryOption:hover .inventorySelectB {
+    display: block;
+}
