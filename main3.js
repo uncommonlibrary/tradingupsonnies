@@ -7,6 +7,9 @@ const blindBoxP = document.getElementById("blindBox");
 const blindBoxResultP = document.getElementById("blindBoxResult");
 
 const tradeEventP = document.getElementById("tradeEvent");
+const inventoryP = document.getElementById("inventory");
+
+const storyEventP = document.getElementById("storyEvent");
 
 const inventory = [];
 
@@ -129,8 +132,8 @@ function addSonnyToInventory(addedSonny) {
 }
 
 /*-------------------------------GAME TITLE PAGE------------------------------*/
-function init () {
-    titleP.style.display = "block";
+function init() {
+  titleP.style.display = "block";
 }
 
 init(); //starts game
@@ -140,47 +143,49 @@ playButton.addEventListener("click", displayFirstSonnyP);
 
 /*----------------------FIRST SONNY PAGE (FIRST PULL)--------------------------*/
 function displayFirstSonnyP() {
-    titleP.style.display = "none";
-    blindBoxP.style.display = "block";
+  titleP.style.display = "none";
+  blindBoxP.style.display = "block";
 
-    const h3Line1 = blindBoxP.querySelector("#h3Line1");
-    h3Line1.innerHTML = blindBoxPages[0].h3Line1;
+  const h3Line1 = blindBoxP.querySelector("#h3Line1");
+  h3Line1.innerHTML = blindBoxPages[0].h3Line1;
 
-    const h3Line2 = blindBoxP.querySelector("#h3Line2");
-    h3Line2.innerHTML = blindBoxPages[0].h3Line2;
+  const h3Line2 = blindBoxP.querySelector("#h3Line2");
+  h3Line2.innerHTML = blindBoxPages[0].h3Line2;
 
-    const blindBoxImg = blindBoxP.querySelector("#blindBoxImg");
-    blindBoxImg.src = blindBoxPages[0].image;
+  const blindBoxImg = blindBoxP.querySelector("#blindBoxImg");
+  blindBoxImg.src = blindBoxPages[0].image;
 
-    const blindBoxButton = blindBoxP.querySelector(".blindBoxButton"); //button here is a class
-    blindBoxButton.setAttribute("id", "firstSonny");
-    blindBoxButton.addEventListener("click", () => {
-        if (blindBoxButton.id === "firstSonny") {
-            displayFirstSonnyResultP();
-        }
-    });
+  const blindBoxButton = blindBoxP.querySelector(".blindBoxButton"); //button here is a class
+  blindBoxButton.setAttribute("id", "firstSonny");
+  blindBoxButton.addEventListener("click", () => {
+    if (blindBoxButton.id === "firstSonny") {
+      displayFirstSonnyResultP();
+    }
+  });
 }
 /*--------------------FIRST SONNY RESULT PAGE (FIRST PULL)-----------------------*/
 function displayFirstSonnyResultP() {
-    blindBoxP.style.display = "none";
-    blindBoxResultP.style.display = "block";
+  blindBoxP.style.display = "none";
+  blindBoxResultP.style.display = "block";
 
-    const h3FirstSonnyText = blindBoxResultP.querySelector("h3");
-    h3FirstSonnyText.innerHTML = "Hmm... You're not sure if you really like this one. <br> Let's see if you can trade it up!";
+  const h3FirstSonnyText = blindBoxResultP.querySelector("h3");
+  h3FirstSonnyText.innerHTML =
+    "Hmm... You're not sure if you really like this one. <br> Let's see if you can trade it up!";
 
-    const startSonny = getRandomRegSA(); //randomly selects regular sonny
-    const blindBoxResultImg =
-      blindBoxResultP.querySelector("#blindBoxResultImg");
-    blindBoxResultImg.src = startSonny.image; //adds URL from startSonny (which is linked to sonnyAngel filtered [])
-    addSonnyToInventory(startSonny);
+  const startSonny = getRandomRegSA(); //randomly selects regular sonny
+  const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
+  blindBoxResultImg.src = startSonny.image; //adds URL from startSonny (which is linked to sonnyAngel filtered [])
+  addSonnyToInventory(startSonny);
 
-    const blindBoxResultButton = blindBoxResultP.querySelector(".blindBoxResultButton");
-    blindBoxResultButton.setAttribute("id", "firstSonnyResult");
-    blindBoxResultButton.addEventListener("click", () => {
-        if (blindBoxResultButton.id === "firstSonnyResult") {
-            displayFirstTradeP();
-        }
-    })
+  const blindBoxResultButton = blindBoxResultP.querySelector(
+    ".blindBoxResultButton"
+  );
+  blindBoxResultButton.setAttribute("id", "firstSonnyResult");
+  blindBoxResultButton.addEventListener("click", () => {
+    if (blindBoxResultButton.id === "firstSonnyResult") {
+      displayFirstTradeP();
+    }
+  });
 }
 /*------------------------------FIRST TRADE PAGE--------------------------------*/
 function displayFirstTradeP() {
@@ -198,7 +203,7 @@ function displayFirstTradeP() {
   /*---display the 3 trade options----*/
   const tradeDivs = tradeEventP.querySelectorAll(".tradeOption"); //selects the three trade options
   const tradeOptions = []; //to store the trade options so they dont disappear after for loop
-  
+
   /*---for each of the three trade options, do the following:----*/
   for (let j = 0; j < tradeDivs.length; j++) {
     //in each div do this (should run 3 times)
@@ -216,15 +221,84 @@ function displayFirstTradeP() {
     tradeSelectButton.setAttribute("id", `tradeSelectButton${j}`);
     tradeSelectButton.innerHTML = "Select";
     tradeSelectButton.addEventListener("click", () => {
-        if (tradeSelectButton.id === `tradeSelectButton${j}`) {
-            inventory.push(tradeOptions[j]); //adds event listener to each button and registers the click to inventory
-            console.log("Chosen Sonny:", tradeOptions[j]);
-            console.log("Current Inventory:", inventory);
-            console.log("proceed to first trade inventory");
-        }      
+      if (tradeSelectButton.id === `tradeSelectButton${j}`) {
+        inventory.push(tradeOptions[j]); //adds event listener to each button and registers the click to inventory
+        console.log("Chosen Sonny:", tradeOptions[j]);
+        console.log("Current Inventory:", inventory);
+        displayFirstTradeInventoryP();
+      }
     });
     tradeDivs[j].appendChild(tradeSelectButton); //appends select button to each trade div
   }
 }
 
 /*------------------------------FIRST TRADE INVENTORY PAGE--------------------------------*/
+function displayFirstTradeInventoryP() {
+  tradeEventP.style.display = "none";
+  inventoryP.style.display = "block";
+
+  for (let i = 0; i < inventory.length; i++) {
+    const inventoryImg = document.createElement("img"); //create img element for each inventory item
+    inventoryImg.src = inventory[i].image; //gets URL link from inventory
+    inventoryP.appendChild(inventoryImg);
+
+    const inventorySelectButton = document.createElement("button"); //create button for every inventory option
+    inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
+    inventorySelectButton.innerHTML = "Give this up!";
+    inventorySelectButton.addEventListener("click", () => {
+      if (inventorySelectButton.id === `inventorySelectButton${i}`) {
+        inventory.splice(i, 1); //start at index, deletes only 1
+        console.log("Current Inventory:", inventory);
+        displayEndOfTutorialP();
+      }
+    });
+    inventoryP.appendChild(inventorySelectButton);
+  }
+}
+/*---------------------------END OF TUTORIAL PAGE-------------------------------*/
+function displayEndOfTutorialP() {
+  inventoryP.style.display = "none";
+  storyEventP.style.display = "block";
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML = "Yay! You've made your first trade!";
+  storyEventP.appendChild(h3Line1);
+
+  const h3Line2 = document.createElement("h3");
+  h3Line2.innerHTML = "It's time to grow your collection~";
+  storyEventP.appendChild(h3Line2);
+
+  // const storyEventImg = document.createElement("img");
+  // storyEventImg.src = (INSERT HANDSHAKE IMAGE LINK HERE)
+  // storyEventP.appendChild(storyEventImg);
+
+  const lookOnlineButton = document.createElement("button");
+  lookOnlineButton.setAttribute("id", "lookOnlineButton");
+  lookOnlineButton.innerHTML = "Look for Sonnies online";
+  lookOnlineButton.addEventListener("click", goodDealOrNot);
+  storyEventP.appendChild(lookOnlineButton);
+
+  const lookInStoresButton = document.createElement("button");
+  lookInStoresButton.setAttribute("id", "lookInStoresButton");
+  lookInStoresButton.innerHTML = "Try your luck in-stores";
+  lookInStoresButton.addEventListener("click", soldOutOrNot);
+  storyEventP.appendChild(lookInStoresButton);
+}
+
+function soldOutOrNot() {
+  const probability = Math.random(); //generates number between 0 and 1
+  if (probability < 0.5) {
+    console.log("Store is in Stock page");
+  } else {
+    console.log("store is sold out page");
+  }
+}
+
+function goodDealOrNot() {
+  const probability = Math.random(); //generates number between 0 and 1
+  if (probability < 0.5) {
+    console.log("you found a good deal page");
+  } else {
+    console.log("no good listings page");
+  }
+}
