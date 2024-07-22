@@ -131,6 +131,31 @@ function addSonnyToInventory(addedSonny) {
   console.log("Current Inventory:", inventory);
 }
 
+//function to clear blind box page
+function clearBlindBoxP() {
+  const h3Line1 = blindBoxP.querySelector("#h3Line1");
+  const h3Line2 = blindBoxP.querySelector("#h3Line2");
+  const blindBoxImg = blindBoxP.querySelector("#blindBoxImg");
+  const blindBoxButton = blindBoxP.querySelector(".blindBoxButton");
+
+  h3Line1.innerHTML = "";
+  h3Line2.innerHTML = "";
+  blindBoxImg.src = "";
+  blindBoxButton.removeAttribute("id");
+}
+
+//function to clear blind box RESULT page
+function clearBlindBoxResultP() {
+  const h3Line1 = blindBoxResultP.querySelector("h3");
+  const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
+  const blindBoxResultButton = blindBoxResultP.querySelector(
+    ".blindBoxResultButton"
+  );
+
+  h3Line1.innerHTML = "";
+  blindBoxResultImg.src = "";
+  blindBoxResultButton.removeAttribute("id");
+}
 /*-------------------------------GAME TITLE PAGE------------------------------*/
 function init() {
   titleP.style.display = "block";
@@ -168,8 +193,8 @@ function displayFirstSonnyResultP() {
   blindBoxP.style.display = "none";
   blindBoxResultP.style.display = "block";
 
-  const h3FirstSonnyText = blindBoxResultP.querySelector("h3");
-  h3FirstSonnyText.innerHTML =
+  const h3Line1 = blindBoxResultP.querySelector("h3");
+  h3Line1.innerHTML =
     "Hmm... You're not sure if you really like this one. <br> Let's see if you can trade it up!";
 
   const startSonny = getRandomRegSA(); //randomly selects regular sonny
@@ -288,9 +313,9 @@ function displayEndOfTutorialP() {
 function soldOutOrNot() {
   const probability = Math.random(); //generates number between 0 and 1
   if (probability < 0.5) {
-    console.log("Store is in Stock page");
+    displayStoreInStockP();
   } else {
-    console.log("store is sold out page");
+    displayStoreSoldOutP();
   }
 }
 
@@ -301,4 +326,73 @@ function goodDealOrNot() {
   } else {
     console.log("no good listings page");
   }
+}
+
+/*---------------------------STORE SOLD OUT PAGE-------------------------------*/
+function displayStoreSoldOutP() {
+  storyEventP.style.display = "block";
+  storyEventP.innerHTML = ""; //clear previous content
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML = "Oh dear, they're sold out for the day!";
+  storyEventP.appendChild(h3Line1);
+
+  // const storyEventImg = document.createElement("img");
+  // storyEventImg.src = (SOLD OUT PHOTO);
+  // storyEventP.appendChild(storyEventImg);
+
+  const storeSoldOutButton = document.createElement("button");
+  storeSoldOutButton.setAttribute("id", "storeSoldOutButton");
+  storeSoldOutButton.innerHTML = "Leave Store";
+  storeSoldOutButton.addEventListener("click", () => {
+    console.log("display newcomer page");
+  });
+  storyEventP.appendChild(storeSoldOutButton);
+}
+/*---------------------------STORE IN STOCK PAGE (BLIND BOX)-------------------------------*/
+function displayStoreInStockP() {
+  storyEventP.style.display = "none";
+  clearBlindBoxP();
+  blindBoxP.style.display = "block";
+
+  const h3Line1 = blindBoxP.querySelector("#h3Line1");
+  h3Line1.innerHTML = blindBoxPages[2].h3Line1;
+
+  const h3Line2 = blindBoxP.querySelector("#h3Line2");
+  h3Line2.innerHTML = blindBoxPages[2].h3Line2;
+
+  const blindBoxImg = blindBoxP.querySelector("#blindBoxImg");
+  blindBoxImg.src = blindBoxPages[2].image;
+
+  const blindBoxButton = blindBoxP.querySelector(".blindBoxButton"); //button here is a class
+  blindBoxButton.setAttribute("id", "storeInStockButton");
+  blindBoxButton.addEventListener("click", () => {
+    if (blindBoxButton.id === "storeInStockButton") {
+      displayStoreInStockResultP();
+    }
+  });
+}
+/*------------------STORE IN STOCK RESULT PAGE (BLIND BOX RESULT)-----------------------*/
+function displayStoreInStockResultP() {
+  blindBoxP.style.display = "none";
+  clearBlindBoxResultP();
+  blindBoxResultP.style.display = "block";
+
+  const h3Line1 = blindBoxResultP.querySelector("h3");
+  h3Line1.innerHTML = "You opened the blind box and...";
+
+  const randomSonny = getRandomSA(); //randomly selects any sonny
+  const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
+  blindBoxResultImg.src = randomSonny.image;
+  addSonnyToInventory(randomSonny);
+
+  const blindBoxResultButton = blindBoxResultP.querySelector(
+    ".blindBoxResultButton"
+  );
+  blindBoxResultButton.setAttribute("id", "storeInStockResultButton");
+  blindBoxResultButton.addEventListener("click", () => {
+    if (blindBoxResultButton.id === "storeInStockResultButton") {
+      console.log("display newcomer page");
+    }
+  });
 }
