@@ -343,9 +343,11 @@ function displayStoreSoldOutP() {
 
   const storeSoldOutButton = document.createElement("button");
   storeSoldOutButton.setAttribute("id", "storeSoldOutButton");
-  storeSoldOutButton.innerHTML = "Leave Store";
+  storeSoldOutButton.innerHTML = "Next";
   storeSoldOutButton.addEventListener("click", () => {
-    console.log("display newcomer page");
+    if (storeSoldOutButton.id === "storeSoldOutButton") {
+      displayNewcomerP();
+    }
   });
   storyEventP.appendChild(storeSoldOutButton);
 }
@@ -392,7 +394,75 @@ function displayStoreInStockResultP() {
   blindBoxResultButton.setAttribute("id", "storeInStockResultButton");
   blindBoxResultButton.addEventListener("click", () => {
     if (blindBoxResultButton.id === "storeInStockResultButton") {
-      console.log("display newcomer page");
+      displayNewcomerP();
     }
   });
+}
+/*---------------------------NEWCOMER PAGE (STORY EVENT)--------------------------------*/
+function displayNewcomerP() {
+  blindBoxResultP.style.display = "none";
+  storyEventP.innerHTML = ""; //clear previous content
+  storyEventP.style.display = "block";
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML =
+    "You tell the storekeeper that you're new to Sonny Angels.";
+  storyEventP.appendChild(h3Line1);
+
+  const h3Line2 = document.createElement("h3");
+  h3Line2.innerHTML =
+    "They refer you to an online community, where you can meet new <br>people and also find what you're looking for.";
+  storyEventP.appendChild(h3Line2);
+
+  //   const storyEventImg = document.createElement("img");
+  //   storyEventImg.src = (PHOTO OF FRIENDLY SHOPKEEPER);
+  //   storyEventP.appendChild(storyEventImg);
+
+  const newcomerButton = document.createElement("button");
+  newcomerButton.setAttribute("id", "newcomerButton");
+  newcomerButton.innerHTML = "Join group";
+  newcomerButton.addEventListener("click", () => {
+    if (newcomerButton.id === "newcomerButton") {
+      displaySonnyAngelForumP();
+    }
+  });
+  storyEventP.appendChild(newcomerButton);
+}
+/*-----------------------SONNY ANGEL FORUM PAGE (STORY EVENT)---------------------------*/
+function displaySonnyAngelForumP() {
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "block";
+
+  const h1Line1 = document.createElement("h1");
+  h1Line1.innerHTML = "WELCOME TO THE SONNY ANGEL FORUM.";
+  storyEventP.appendChild(h1Line1);
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML = "You have joined the online forum channel.";
+  storyEventP.appendChild(h3Line1);
+
+  const h3Line2 = document.createElement("h3");
+  h3Line2.innerHTML =
+    "People are posting their handmade Sonny clothes and accessories, offering trades, and selling Sonnies.";
+  storyEventP.appendChild(h3Line2);
+
+  //   const storyEventImg = document.createElement("img");
+  //   storyEventImg.src = (PHOTO OF FORUM CHANNEL);
+  //   storyEventP.appendChild(storyEventImg);
+
+  const forumTradeButton = document.createElement("button");
+  forumTradeButton.setAttribute("id", "forumTradeButton");
+  forumTradeButton.innerHTML = "Ask for trades";
+  forumTradeButton.addEventListener("click", () => {
+    console.log("display forum trade accept page");
+  });
+  storyEventP.appendChild(forumTradeButton);
+
+  const forumBuyButton = document.createElement("button");
+  forumBuyButton.setAttribute("id", "forumBuyButton");
+  forumBuyButton.innerHTML = "Buy a Sonny";
+  forumBuyButton.addEventListener("click", () => {
+    console.log("scammed or not probability");
+  });
+  storyEventP.appendChild(forumBuyButton);
 }
