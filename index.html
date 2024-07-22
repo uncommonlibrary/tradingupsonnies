@@ -6,16 +6,16 @@
     <title>Trading Up Sonnies</title>
     <link rel="stylesheet" href="style.css" />
     <script defer src="data.js"></script>
-    <script defer src="main2.js"></script>
+    <script defer src="main3.js"></script>
 </head>
 <body>
-    <section id = "title">
+    <section id = "title" style = "display:none;">
         <h1>Trading Up Sonnies</h1>
         <h3>Can you get the Golden Shisa?</h3>
         <!-- Will probably replace with a gif of a blind box and a sonny -->
         <img src="https://hands.com.au/cdn/shop/files/hands-sonny-angel-animal-v1-1.jpg?v=1701128711" alt="Sonny Angel Blind Box" width=350px height=450px><br>
         <button id = "playButton">Play</button>
-        <button>How to Play</button>
+        <button id = "instructionButton">How to Play</button>
     </section>
 
     <!-- <section id = "start">
@@ -29,10 +29,21 @@
         <h3 id = "h3Line1"></h3>
         <h3 id = "h3Line2"></h3>
         <img id = "blindBoxImg"><br>
-        <button id = "blindBoxButton"></button>
+        <button class = "blindBoxButton">✨Manifest!✨</button>
     </section>
 
-    <section id = "startResult">
+    <section id = "blindBoxResult" style = "display:none;">
+        <h3></h3>
+        <img id = "blindBoxResultImg"><br>
+        <button class = "blindBoxResultButton">Next</button>
+    </section>
+
+    <section id = "tradeEvent" style = "display:none;">
+        <h1>TRADE EVENT</h1>
+        <h3 id ="h3Line1"></h3>
+    </section>
+
+    <!-- <section id = "startResult">
         <h3>Hmm, you're not sure if you really like this one.</h3>
         <h3>Let's see if you can trade it up!</h3>
          <img id = "startSonnyImg">
@@ -55,14 +66,23 @@
     <section id = "goodDeal">
         <h3>You found a good deal!</h3>
         <h3>Let's see what you got!</h3>
-        <button id="manifestB">✨Manifest!✨</button> <!--this one has chance to get anything-->
+        <button id="manifestB">✨Manifest!✨</button>
     </section>
+
+    <section id = "blindBoxResult"></section>
 
     <section id = "noGoodListings">
         <h3>Hmm, there aren't any good listings today...</h3>
         <p>(pic of empty shop)</p>
         <button class = "lookInStoresB">Try your luck in-stores</button>
-    </section>
+    </section> -->
+
+    <!-- <section id = "handmadeClothes">
+        <h3></h3>
+        <img><br>
+        <button id ="dressUpB"></button>
+        <button id ="dressUpB"></button>
+    </section> -->
 
 </body>
 </html>

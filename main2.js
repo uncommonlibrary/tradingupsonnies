@@ -13,9 +13,11 @@ const firstTradeP = document.getElementById("firstTrade");
 const firstTradeInventoryP = document.getElementById("firstTradeInventory");
 const firstTradeSuccessP = document.getElementById("firstTradeSuccess");
 const goodDealP = document.getElementById("goodDeal");
+const goodDealResultP = document.getElementById("goodDealResult");
 const noGoodListingsP = document.getElementById("noGoodListings");
 
 const blindBoxElement = document.getElementById("blindBox");
+const blindBoxResultElement = document.getElementById("blindBoxResult");
 
 /*----------------------------- Game Pages Display--------------------------------*/
 const init = () => {
@@ -26,6 +28,7 @@ const init = () => {
   firstTradeInventoryP.style.display = "none";
   firstTradeSuccessP.style.display = "none";
   goodDealP.style.display = "none";
+  blindBoxResultElement.style.display = "none";
   noGoodListingsP.style.display = "none";
 };
 
@@ -175,11 +178,30 @@ function displayStartPullP() {
   const blindBoxImg = blindBoxElement.querySelector("#blindBoxImg");
   blindBoxImg.src = blindBoxPage[0].image;
 
-  const blindBoxButton = blindBoxElement.querySelector("#blindBoxButton");
+  const blindBoxButton = blindBoxElement.querySelector(".blindBoxButton");
+  blindBoxButton.setAttribute("id", "startPullButton");
   blindBoxButton.innerHTML = "✨Manifest!✨";
 
-  blindBoxButton.addEventListener("click", displayStartResultP); //only for first pull
+  blindBoxButton.addEventListener("click", () => {
+    if (blindBoxButton.id === "startPullButton") { //ensures that button leads to display start result page
+      displayStartResultP()
+    }
+}); //only for first pull
 }
+/*----------------------------- start Result P -----------------------------*/
+function displayStartResultP() {
+  blindBoxElement.style.display = "none";
+  startResultP.style.display = "block";
+  displayRandomRegSonny();
+}
+
+function displayRandomRegSonny() {
+  const startSonny = getRandomRegSA(); //randomly selects a regular sonny
+  const startSonnyImg = document.getElementById("startSonnyImg");
+  startSonnyImg.src = startSonny.image; //displays the URL of random start Sonny
+  addRandomSonny(startSonny); //adds the start sonny into inventory array
+}
+/*--------------------------------------------------------------------------*/
 
 /*---------------------------------goodDeal page-----------------------------*/
 //blindBoxButton.addEventListener("click", displayGoodDealP);
@@ -198,10 +220,35 @@ function displayGoodDealP() {
   const blindBoxImg = blindBoxElement.querySelector("#blindBoxImg");
   blindBoxImg.src = blindBoxPage[1].image;
 
-  const blindBoxButton = blindBoxElement.querySelector("#blindBoxButton");
+  const blindBoxButton = blindBoxElement.querySelector(".blindBoxButton");
+  blindBoxButton.setAttribute("id", "goodDealButton");
   blindBoxButton.innerHTML = "✨Manifest!✨";
 
-  //blindBoxButton.addEventListener("click", <insert function here>)
+  blindBoxButton.addEventListener("click", () => {
+  if (blindBoxButton.id === "goodDealButton") { //ensures that button leads to display start result page
+     displayGoodDealResultP();
+  }
+});
+}
+
+/*---------------------------------goodDeal result page-----------------------------*/
+function displayGoodDealResultP() {
+  blindBoxElement.style.display = "none";
+  blindBoxResultElement.style.display = "block";
+  displayRandomSonny();
+
+  const goodDealResultButton = document.createElement("button");
+  goodDealResultButton.innerHTML = "Next";
+  goodDealResultButton.addEventListener("click", console.log("displayHandmadeClothesP"));
+  blindBoxResultElement.appendChild(goodDealResultButton);
+}
+
+function displayRandomSonny() {
+  const randomSonny = getRandomSA(); //get random sonny (include secret and limited)
+  const randomSonnyImg = document.createElement("img");
+  randomSonnyImg.src = randomSonny.image
+  blindBoxResultElement.appendChild(randomSonnyImg);
+  addRandomSonny(randomSonny); //adds the start sonny into inventory array
 }
 /*-----------------------store in stock page-------------------------*/
 //need event listener
@@ -217,7 +264,8 @@ function displayStoreInStock() {
   const blindBoxImg = blindBoxElement.querySelector("#blindBoxImg");
   blindBoxImg.src = blindBoxPage[2].image;
 
-  const blindBoxButton = blindBoxElement.querySelector("#blindBoxButton");
+  const blindBoxButton = blindBoxElement.querySelector(".blindBoxButton");
+   blindBoxButton.setAttribute("id", "stockInStockButton");
   blindBoxButton.innerHTML = "✨Manifest!✨";
 
   //blindBoxButton.addEventListener("click", <insert function here>)
@@ -236,7 +284,8 @@ function displayBlindBoxMail() {
   const blindBoxImg = blindBoxElement.querySelector("#blindBoxImg");
   blindBoxImg.src = blindBoxPage[3].image;
 
-  const blindBoxButton = blindBoxElement.querySelector("#blindBoxButton");
+  const blindBoxButton = blindBoxElement.querySelector(".blindBoxButton");
+  blindBoxButton.setAttribute("id", "blindBoxMailButton");
   blindBoxButton.innerHTML = "✨Manifest!✨";
 
   //blindBoxButton.addEventListener("click", <insert function here>)
@@ -255,7 +304,8 @@ function displayBookshopBlindBox() {
   const blindBoxImg = blindBoxElement.querySelector("#blindBoxImg");
   blindBoxImg.src = blindBoxPage[4].image;
 
-  const blindBoxButton = blindBoxElement.querySelector("#blindBoxButton");
+  const blindBoxButton = blindBoxElement.querySelector(".blindBoxButton");
+  blindBoxButton.setAttribute("id", "bookshopBlindBoxButton");
   blindBoxButton.innerHTML = "✨Manifest!✨";
 
   //blindBoxButton.addEventListener("click", <insert function here>)
@@ -274,7 +324,8 @@ function displayFriendsGift() {
   const blindBoxImg = blindBoxElement.querySelector("#blindBoxImg");
   blindBoxImg.src = blindBoxPage[5].image;
 
-  const blindBoxButton = blindBoxElement.querySelector("#blindBoxButton");
+  const blindBoxButton = blindBoxElement.querySelector(".blindBoxButton");
+  blindBoxButton.setAttribute("id", "friendsGiftButton");
   blindBoxButton.innerHTML = "✨Manifest!✨";
 
   //blindBoxButton.addEventListener("click", <insert function here>)
@@ -293,26 +344,12 @@ function displayStoreInStock2() {
   const blindBoxImg = blindBoxElement.querySelector("#blindBoxImg");
   blindBoxImg.src = blindBoxPage[6].image;
 
-  const blindBoxButton = blindBoxElement.querySelector("#blindBoxButton");
+  const blindBoxButton = blindBoxElement.querySelector(".blindBoxButton");
+  blindBoxButton.setAttribute("id", "storeInStock2Button");
   blindBoxButton.innerHTML = "✨Manifest!✨";
 
   //blindBoxButton.addEventListener("click", <insert function here>)
 }
-
-/*----------------------------- first blind box Result Page -----------------------------*/
-function displayStartResultP() {
-  blindBoxElement.style.display = "none";
-  startResultP.style.display = "block";
-  displayRandomRegSonny();
-}
-
-function displayRandomRegSonny() {
-  const startSonny = getRandomRegSA(); //randomly selects a regular sonny
-  const startSonnyImg = document.getElementById("startSonnyImg");
-  startSonnyImg.src = startSonny.image; //displays the URL of random start Sonny
-  addRandomSonny(startSonny); //adds the start sonny into inventory array
-}
-/*--------------------------------------------------------------------------*/
 
 /*---------------------------------TRADE Functions------------------------------*/
 function firstTrade() {
@@ -408,29 +445,38 @@ lookOnlineB.addEventListener("click", goodDealOrNot);
 function goodDealOrNot() {
   const probability = Math.random(); //generates number between 0 and 1
   if (probability < 0.5) {
-    displayGoodDeal();
+    displayGoodDealP();
   } else {
     firstTradeSuccessP.style.display = "none";
     noGoodListingsP.style.display = "block";
   }
 }
 
-function displayGoodDeal() {
-  firstTradeSuccessP.style.display = "none";
-  blindBoxElement.style.display = "block";
+// function displayGoodDeal() {
+//   firstTradeSuccessP.style.display = "none";
+//   blindBoxElement.style.display = "block";
 
-  const h3Line1 = blindBoxElement.querySelector("#h3Line1");
-  h3Line1.innerHTML = blindBoxPage[1].h3Line1; //adds first line
+//   const h3Line1 = blindBoxElement.querySelector("#h3Line1");
+//   h3Line1.innerHTML = blindBoxPage[1].h3Line1; //adds first line
 
-  const h3Line2 = blindBoxElement.querySelector("#h3Line2");
-  h3Line2.innerHTML = blindBoxPage[1].h3Line2; //adds second line
+//   const h3Line2 = blindBoxElement.querySelector("#h3Line2");
+//   h3Line2.innerHTML = blindBoxPage[1].h3Line2; //adds second line
 
-  const blindBoxImg = blindBoxElement.querySelector("#blindBoxImg");
-  blindBoxImg.src = blindBoxPage[1].image;
+//   const blindBoxImg = blindBoxElement.querySelector("#blindBoxImg");
+//   blindBoxImg.src = blindBoxPage[1].image;
 
-  const blindBoxButton = blindBoxElement.querySelector("#blindBoxButton");
-  blindBoxButton.innerHTML = "✨Manifest!✨";
+//   const blindBoxButton = blindBoxElement.querySelector(".blindBoxButton");
+//   blindBoxButton.setAttribute("id", "goodDealButton")
+//   blindBoxButton.innerHTML = "✨Manifest!✨";
 
-  blindBoxButton.addEventListener("click", () => console.log("good deal"));
+//   blindBoxButton.addEventListener("click", () => {
+//     if (blindBoxButton.id === "goodDealButton") {
+//       displayGoodDealResultP();
+//     }
+//   });
+// }
+
+/*--------------------display handmade clothes-----------------------------*/
+function displayHandmadeClothes() {
+  handmadeClothesP.style.display = "block";
 }
-/*--------------------------------------------------------------------------*/
