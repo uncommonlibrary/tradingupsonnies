@@ -322,10 +322,120 @@ function soldOutOrNot() {
 function goodDealOrNot() {
   const probability = Math.random(); //generates number between 0 and 1
   if (probability < 0.5) {
-    console.log("you found a good deal page");
+    displayGoodDealP();
   } else {
-    console.log("no good listings page");
+    displayNoGoodListingsP();
   }
+}
+/*----------------------NO GOOD LISTINGS PAGE (STORY EVENT)--------------------*/
+function displayNoGoodListingsP() {
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "block";
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML = "Hmm, there aren't any good listings today...";
+  storyEventP.appendChild(h3Line1);
+
+  // const storyEventImg = document.createElement("img");
+  // storyEventImg.src = (PIC OF EMPTY SHOP);
+  // storyEventP.appendChild(storyEventImg);
+
+  const noGoodListingsButton = document.createElement("button");
+  noGoodListingsButton.setAttribute("id", "noGoodListingsButton");
+  noGoodListingsButton.innerHTML = "Try your luck in-stores";
+  noGoodListingsButton.addEventListener("click", () => {
+    if (noGoodListingsButton.id === "noGoodListingsButton") {
+      soldOutOrNot();
+    }
+  });
+  storyEventP.appendChild(noGoodListingsButton);
+}
+
+/*----------------------GOOD DEAL PAGE (BLIND BOX EVENT)--------------------*/
+function displayGoodDealP() {
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "none";
+  clearBlindBoxP();
+  blindBoxP.style.display = "block";
+
+  const h3Line1 = blindBoxP.querySelector("#h3Line1");
+  h3Line1.innerHTML = blindBoxPages[1].h3Line1;
+
+  const h3Line2 = blindBoxP.querySelector("#h3Line2");
+  h3Line2.innerHTML = blindBoxPages[1].h3Line2;
+
+  const blindBoxImg = blindBoxP.querySelector("#blindBoxImg");
+  blindBoxImg.src = blindBoxPages[1].image;
+
+  const blindBoxButton = blindBoxP.querySelector(".blindBoxButton"); //button here is a class
+  blindBoxButton.setAttribute("id", "goodDealButton");
+  blindBoxButton.addEventListener("click", () => {
+    if (blindBoxButton.id === "goodDealButton") {
+      displayGoodDealResultP();
+    }
+  });
+  blindBoxP.appendChild(blindBoxButton);
+}
+
+/*----------------------GOOD DEAL RESULT PAGE (BLIND BOX RESULT)--------------------*/
+function displayGoodDealResultP() {
+  blindBoxP.style.display = "none";
+  clearBlindBoxResultP();
+  blindBoxResultP.style.display = "block";
+
+  const h3Line1 = blindBoxResultP.querySelector("h3");
+  h3Line1.innerHTML = "You opened the blind box and...";
+
+  const randomSonny = getRandomSA(); //randomly selects any sonny
+  const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
+  blindBoxResultImg.src = randomSonny.image;
+  addSonnyToInventory(randomSonny);
+
+  const blindBoxResultButton = blindBoxResultP.querySelector(
+    ".blindBoxResultButton"
+  );
+  blindBoxResultButton.setAttribute("id", "goodDealResultButton");
+  blindBoxResultButton.addEventListener("click", () => {
+    if (blindBoxResultButton.id === "goodDealResultButton") {
+      displayHandmadeClothesP();
+    }
+  });
+}
+
+/*-------------------------HANDMADE CLOTHES PAGE (STORY EVENT)-----------------------*/
+function displayHandmadeClothesP() {
+  blindBoxResultP.style.display = "none";
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "block";
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML =
+    "As you continue searching online, you found a shop selling handmade clothes for your angel(s)!";
+  storyEventP.appendChild(h3Line1);
+
+  // const storyEventImg = document.createElement("img");
+  // storyEventImg.src = (PHOTO OF CROCHET CLOTHES)
+  // storyEventP.appendChild(storyEventImg);
+
+  const dressUpButton = document.createElement("button");
+  dressUpButton.setAttribute("id", "dressUpButton");
+  dressUpButton.innerHTML = "Dress them up!";
+  dressUpButton.addEventListener("click", () => {
+    if (dressUpButton.id === "dressUpButton") {
+      console.log("display your sonnies are looking beautiful!!");
+    }
+  });
+  storyEventP.appendChild(dressUpButton);
+
+  const noDressUpButton = document.createElement("button");
+  noDressUpButton.setAttribute("id", "noDressUpButton");
+  noDressUpButton.innerHTML = "Nah, I'll pass";
+  noDressUpButton.addEventListener("click", () => {
+    if (noDressUpButton.id === "noDressUpButton") {
+      console.log("display heading out trade event!!");
+    }
+  });
+  storyEventP.appendChild(noDressUpButton);
 }
 
 /*---------------------------STORE SOLD OUT PAGE-------------------------------*/
