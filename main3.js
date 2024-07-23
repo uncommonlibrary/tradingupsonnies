@@ -159,8 +159,8 @@ function clearBlindBoxResultP() {
 
 //function to clear TradeEvent page
 function clearTradeEventP() {
-  const h3Line1 = tradeEventP.querySelector("#h3Line1");
-  h3Line1.innerHTML = "";
+  const h3Lines = tradeEventP.querySelectorAll("h3");
+  h3Lines.innerHTML = "";
 
   const tradeDivs = tradeEventP.querySelectorAll(".tradeOption");
   tradeDivs.forEach((tradeDiv) => tradeEventP.removeChild(tradeDiv)); //remove each trade div x3
@@ -620,12 +620,394 @@ function displaySonnyAngelForumP() {
   forumBuyButton.setAttribute("id", "forumBuyButton");
   forumBuyButton.innerHTML = "Buy a Sonny";
   forumBuyButton.addEventListener("click", () => {
-    console.log("scammed or not probability");
+    scammedOrNot();
   });
   storyEventP.appendChild(forumBuyButton);
 }
-/*-----------------------FORUM TRADE ACCEPT PAGE (TRADE EVENT)---------------------------*/
 
+function scammedOrNot() {
+  const probability = Math.random(); //generates number between 0 and 1
+  if (probability < 0.3) {
+    displayGotScammed();
+  } else {
+    displayBlindBoxMailP();
+  }
+}
+/*-----------------------GOT SCAMMED PAGE (STORY EVENT)---------------------------*/
+function displayGotScammed() {
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "block";
+
+  const h1Line1 = document.createElement("h1");
+  h1Line1.innerHTML = "OH NO!";
+  storyEventP.appendChild(h1Line1);
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML = "You got scammed!";
+  storyEventP.appendChild(h3Line1);
+
+  //   const storyEventImg = document.createElement("img");
+  //   storyEventImg.src = (PHOTO OF SCAMMED);
+  //   storyEventP.appendChild(storyEventImg);
+
+  const gotScammedButton = document.createElement("button");
+  gotScammedButton.setAttribute("id", "gotScammedButton");
+  gotScammedButton.innerHTML = "Report to admin and blacklist!";
+  gotScammedButton.addEventListener("click", () => {
+    if (gotScammedButton.id === "gotScammedButton") {
+      displaySafeCommunityP();
+    }
+  });
+  storyEventP.appendChild(gotScammedButton);
+}
+
+/*-----------------------SAFE COMMUNITY PAGE (STORY EVENT)---------------------------*/
+function displaySafeCommunityP() {
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "block";
+
+  const h1Line1 = document.createElement("h1");
+  h1Line1.innerHTML = "REPORTED!";
+  storyEventP.appendChild(h1Line1);
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML = "Thank you for keeping our community safe!";
+  storyEventP.appendChild(h3Line1);
+
+  const h3Line2 = document.createElement("h3");
+  h3Line2.innerHTML =
+    "Still annoyed, you decide to continue your search in-stores.";
+  storyEventP.appendChild(h3Line2);
+
+  //   const storyEventImg = document.createElement("img");
+  //   storyEventImg.src = (PHOTO OF REPORTED);
+  //   storyEventP.appendChild(storyEventImg);
+
+  const safeCommunityButton = document.createElement("button");
+  safeCommunityButton.setAttribute("id", "safeCommunityButton");
+  safeCommunityButton.innerHTML = "Check in-stores";
+  safeCommunityButton.addEventListener("click", () => {
+    if (safeCommunityButton.id === "safeCommunityButton") {
+      soldOutOrNot2();
+    }
+  });
+  storyEventP.appendChild(safeCommunityButton);
+}
+
+function soldOutOrNot2() {
+  const probability = Math.random(); //generates number between 0 and 1
+  if (probability < 0.5) {
+    displayStoreInStock2P();
+  } else {
+    displayStoreSoldOut2P();
+  }
+}
+
+/*---------------------------STORE SOLD OUT 2 PAGE-------------------------------*/
+function displayStoreSoldOut2P() {
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "block";
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML = "Oh dear, they're sold out for the day!";
+  storyEventP.appendChild(h3Line1);
+
+  // const storyEventImg = document.createElement("img");
+  // storyEventImg.src = (SOLD OUT PHOTO);
+  // storyEventP.appendChild(storyEventImg);
+
+  const storeSoldOut2Button = document.createElement("button");
+  storeSoldOut2Button.setAttribute("id", "storeSoldOut2Button");
+  storeSoldOut2Button.innerHTML = "Next";
+  storeSoldOut2Button.addEventListener("click", () => {
+    if (storeSoldOut2Button.id === "storeSoldOut2Button") {
+      displayCafeTradeP();
+    }
+  });
+  storyEventP.appendChild(storeSoldOut2Button);
+}
+
+/*-----------------------STORE IN STOCK 2 (BLIND BOX EVENT)---------------------------*/
+function displayStoreInStock2P() {
+  storyEventP.style.display = "none";
+  clearBlindBoxP();
+  blindBoxP.style.display = "block";
+
+  const h3Line1 = blindBoxP.querySelector("#h3Line1");
+  h3Line1.innerHTML = blindBoxPages[6].h3Line1;
+
+  const h3Line2 = blindBoxP.querySelector("#h3Line2");
+  h3Line2.innerHTML = blindBoxPages[6].h3Line2;
+
+  const blindBoxImg = blindBoxP.querySelector("#blindBoxImg");
+  blindBoxImg.src = blindBoxPages[6].image;
+
+  const blindBoxButton = blindBoxP.querySelector(".blindBoxButton"); //button here is a class
+  blindBoxButton.setAttribute("id", "storeInStock2Button");
+  blindBoxButton.addEventListener("click", () => {
+    if (blindBoxButton.id === "storeInStock2Button") {
+      displayStoreInStock2ResultP();
+    }
+  });
+}
+
+/*-------------------STORE IN STOCK 2 RESULT PAGE (BLIND BOX RESULT)--------------------*/
+function displayStoreInStock2ResultP() {
+  blindBoxP.style.display = "none";
+  clearBlindBoxResultP();
+  blindBoxResultP.style.display = "block";
+
+  const h3Line1 = blindBoxResultP.querySelector("h3");
+  h3Line1.innerHTML = "You opened the blind box and...";
+
+  const randomSonny = getRandomSA(); //randomly selects any sonny
+  const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
+  blindBoxResultImg.src = randomSonny.image;
+  addSonnyToInventory(randomSonny);
+
+  const blindBoxResultButton = blindBoxResultP.querySelector(
+    ".blindBoxResultButton"
+  );
+  blindBoxResultButton.setAttribute("id", "storeInStock2ResultButton");
+  blindBoxResultButton.addEventListener("click", () => {
+    if (blindBoxResultButton.id === "storeInStock2ResultButton") {
+      displayCafeTradeP();
+    }
+  });
+}
+
+/*-------------------------CAFE TRADE PAGE (TRADE EVENT)-----------------------------*/
+function displayCafeTradeP() {
+  blindBoxResultP.style.display = "none";
+  storyEventP.style.display = "none";
+  clearTradeEventP();
+  tradeEventP.style.display = "block";
+
+  const h3Line1 = tradeEventP.querySelector("#h3Line1");
+  h3Line1.innerHTML = tradePages[3].h3Line1;
+
+  const h3Line2 = document.createElement("h3");
+  h3Line2.innerHTML = tradePages[3].h3Line2;
+  tradeEventP.appendChild(h3Line2);
+
+  const h3Line3 = document.createElement("h3");
+  h3Line3.innerHTML = tradePages[3].h3Line3;
+  tradeEventP.appendChild(h3Line3);
+
+  /*--create 3 divs to hold 3 trade options---*/
+  for (let i = 0; i < 3; i++) {
+    const tradeDiv = document.createElement("div");
+    tradeDiv.setAttribute("class", "tradeOption");
+    tradeEventP.appendChild(tradeDiv);
+  }
+  /*---display the 3 trade options----*/
+  const tradeDivs = tradeEventP.querySelectorAll(".tradeOption"); //selects the three trade options
+  const tradeOptions = []; //to store the trade options so they dont disappear after for loop
+
+  /*---for each of the three trade options, do the following:----*/
+  for (let j = 0; j < tradeDivs.length; j++) {
+    //in each div do this (should run 3 times)
+    const tradeOption = getRandomSA(); //generate random sonny
+    tradeOptions.push(tradeOption); //adds trade option to array x3
+
+    //adding images to trade option divs
+    const tradeOptionImg = document.createElement("img"); //create image element in each div
+    tradeOptionImg.src = tradeOption.image; //gets image URL from trade option (so from sonnyAngel [])
+    tradeOptionImg.setAttribute("id", `tradeOption${j}`); //giving specific id to each trade option
+    tradeDivs[j].appendChild(tradeOptionImg); //appends image to specific trade div x3
+
+    //adding select buttons to trade option divs
+    const tradeSelectButton = document.createElement("button");
+    tradeSelectButton.setAttribute("id", `tradeSelectButton${j}`);
+    tradeSelectButton.innerHTML = "Select";
+    tradeSelectButton.addEventListener("click", () => {
+      if (tradeSelectButton.id === `tradeSelectButton${j}`) {
+        inventory.push(tradeOptions[j]); //adds event listener to each button and registers the click to inventory
+        console.log("Chosen Sonny:", tradeOptions[j]);
+        console.log("Current Inventory:", inventory);
+        displayCafeTradeInventoryP();
+      }
+    });
+    tradeDivs[j].appendChild(tradeSelectButton); //appends select button to each trade div
+  }
+}
+
+/*-------------------CAFE TRADE INVENTORY PAGE (INVENTORY EVENT)----------------------*/
+function displayCafeTradeInventoryP() {
+  tradeEventP.style.display = "none";
+  clearInventoryP();
+  inventoryP.style.display = "block";
+
+  for (let i = 0; i < inventory.length; i++) {
+    const inventoryImg = document.createElement("img"); //create img element for each inventory item
+    inventoryImg.src = inventory[i].image; //gets URL link from inventory
+    inventoryP.appendChild(inventoryImg);
+
+    const inventorySelectButton = document.createElement("button"); //create button for every inventory option
+    inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
+    inventorySelectButton.innerHTML = "Give this up!";
+    inventorySelectButton.addEventListener("click", () => {
+      if (inventorySelectButton.id === `inventorySelectButton${i}`) {
+        inventory.splice(i, 1); //start at index, deletes only 1
+        console.log("Current Inventory:", inventory);
+        displayStrangerReccoEventP();
+      }
+    });
+    inventoryP.appendChild(inventorySelectButton);
+  }
+}
+
+/*-------------------STRANGER RECCO EVENT PAGE (STORY EVENT)----------------------*/
+function displayStrangerReccoEventP() {
+  inventoryP.style.display = "none";
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "block";
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML =
+    "After the trade, the stranger tells you about another small trade event happening later.";
+  storyEventP.appendChild(h3Line1);
+
+  //   const storyEventImg = document.createElement("img");
+  //   storyEventImg.src = (PHOTO OF SCAMMED);
+  //   storyEventP.appendChild(storyEventImg);
+
+  const strangerReccoEventButton = document.createElement("button");
+  strangerReccoEventButton.setAttribute("id", "strangerReccoEventButton");
+  strangerReccoEventButton.innerHTML =
+    "Check it out and inform the online community!";
+  strangerReccoEventButton.addEventListener("click", () => {
+    if (strangerReccoEventButton.id === "strangerReccoEventButton") {
+      displayParkTradeP();
+    }
+  });
+  storyEventP.appendChild(strangerReccoEventButton);
+}
+
+/*-------------------PARK TRADE EVENT (TRADE EVENT)----------------------*/
+function displayParkTradeP() {
+  storyEventP.style.display = "none";
+  clearTradeEventP();
+  tradeEventP.style.display = "block";
+
+  const h3Line1 = tradeEventP.querySelector("#h3Line1");
+  h3Line1.innerHTML = tradePages[4].h3Line1;
+
+  const h3Line2 = document.createElement("h3");
+  h3Line2.innerHTML = tradePages[4].h3Line2;
+  tradeEventP.appendChild(h3Line2);
+
+  /*--create 3 divs to hold 3 trade options---*/
+  for (let i = 0; i < 3; i++) {
+    const tradeDiv = document.createElement("div");
+    tradeDiv.setAttribute("class", "tradeOption");
+    tradeEventP.appendChild(tradeDiv);
+  }
+  /*---display the 3 trade options----*/
+  const tradeDivs = tradeEventP.querySelectorAll(".tradeOption"); //selects the three trade options
+  const tradeOptions = []; //to store the trade options so they dont disappear after for loop
+
+  /*---for each of the three trade options, do the following:----*/
+  for (let j = 0; j < tradeDivs.length; j++) {
+    //in each div do this (should run 3 times)
+    const tradeOption = getRandomSA(); //generate random sonny
+    tradeOptions.push(tradeOption); //adds trade option to array x3
+
+    //adding images to trade option divs
+    const tradeOptionImg = document.createElement("img"); //create image element in each div
+    tradeOptionImg.src = tradeOption.image; //gets image URL from trade option (so from sonnyAngel [])
+    tradeOptionImg.setAttribute("id", `tradeOption${j}`); //giving specific id to each trade option
+    tradeDivs[j].appendChild(tradeOptionImg); //appends image to specific trade div x3
+
+    //adding select buttons to trade option divs
+    const tradeSelectButton = document.createElement("button");
+    tradeSelectButton.setAttribute("id", `tradeSelectButton${j}`);
+    tradeSelectButton.innerHTML = "Select";
+    tradeSelectButton.addEventListener("click", () => {
+      if (tradeSelectButton.id === `tradeSelectButton${j}`) {
+        inventory.push(tradeOptions[j]); //adds event listener to each button and registers the click to inventory
+        console.log("Chosen Sonny:", tradeOptions[j]);
+        console.log("Current Inventory:", inventory);
+        displayParkTradeInventoryP();
+      }
+    });
+    tradeDivs[j].appendChild(tradeSelectButton); //appends select button to each trade div
+  }
+}
+
+/*-------------------PARK TRADE INVENTORY PAGE (INVENTORY EVENT)----------------------*/
+function displayParkTradeInventoryP() {
+  tradeEventP.style.display = "none";
+  clearInventoryP();
+  inventoryP.style.display = "block";
+
+  for (let i = 0; i < inventory.length; i++) {
+    const inventoryImg = document.createElement("img"); //create img element for each inventory item
+    inventoryImg.src = inventory[i].image; //gets URL link from inventory
+    inventoryP.appendChild(inventoryImg);
+
+    const inventorySelectButton = document.createElement("button"); //create button for every inventory option
+    inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
+    inventorySelectButton.innerHTML = "Give this up!";
+    inventorySelectButton.addEventListener("click", () => {
+      if (inventorySelectButton.id === `inventorySelectButton${i}`) {
+        inventory.splice(i, 1); //start at index, deletes only 1
+        console.log("Current Inventory:", inventory);
+        console.log("display friend invite page");
+      }
+    });
+    inventoryP.appendChild(inventorySelectButton);
+  }
+}
+/*-----------------------BLIND BOX MAIL PAGE (BLIND BOX EVENT)---------------------------*/
+function displayBlindBoxMailP() {
+  storyEventP.style.display = "none";
+  clearBlindBoxP();
+  blindBoxP.style.display = "block";
+
+  const h3Line1 = blindBoxP.querySelector("#h3Line1");
+  h3Line1.innerHTML = blindBoxPages[3].h3Line1;
+
+  const h3Line2 = blindBoxP.querySelector("#h3Line2");
+  h3Line2.innerHTML = blindBoxPages[3].h3Line2;
+
+  const blindBoxImg = blindBoxP.querySelector("#blindBoxImg");
+  blindBoxImg.src = blindBoxPages[3].image;
+
+  const blindBoxButton = blindBoxP.querySelector(".blindBoxButton"); //button here is a class
+  blindBoxButton.setAttribute("id", "blindBoxMailButton");
+  blindBoxButton.addEventListener("click", () => {
+    if (blindBoxButton.id === "blindBoxMailButton") {
+      displayBlindBoxMailResultP();
+    }
+  });
+}
+/*-----------------------BLIND BOX MAIL RESULT PAGE (BLIND BOX RESULT EVENT)---------------------------*/
+function displayBlindBoxMailResultP() {
+  blindBoxP.style.display = "none";
+  clearBlindBoxResultP();
+  blindBoxResultP.style.display = "block";
+
+  const h3Line1 = blindBoxResultP.querySelector("h3");
+  h3Line1.innerHTML = "You opened the blind box and...";
+
+  const randomSonny = getRandomSA(); //randomly selects any sonny
+  const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
+  blindBoxResultImg.src = randomSonny.image;
+  addSonnyToInventory(randomSonny);
+
+  const blindBoxResultButton = blindBoxResultP.querySelector(
+    ".blindBoxResultButton"
+  );
+  blindBoxResultButton.setAttribute("id", "blindBoxMailResultButton");
+  blindBoxResultButton.addEventListener("click", () => {
+    if (blindBoxResultButton.id === "blindBoxMailResultButton") {
+      console.log("display sonny sticker page");
+    }
+  });
+}
+
+/*-----------------------FORUM TRADE ACCEPT PAGE (TRADE EVENT)---------------------------*/
 function displayForumTradeAcceptP() {
   storyEventP.style.display = "none";
   clearTradeEventP();
