@@ -953,12 +953,65 @@ function displayParkTradeInventoryP() {
       if (inventorySelectButton.id === `inventorySelectButton${i}`) {
         inventory.splice(i, 1); //start at index, deletes only 1
         console.log("Current Inventory:", inventory);
-        console.log("display friend invite page");
+        displayFriendInviteP();
       }
     });
     inventoryP.appendChild(inventorySelectButton);
   }
 }
+
+/*-------------------FRIEND INVITE PAGE (STORY EVENT)----------------------*/
+function displayFriendInviteP() {
+  inventoryP.style.display = "none";
+  blindBoxResultP.style.display = "none";
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "block";
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML =
+    "The online community is astir with talks of an upcoming Sonny Angel event. <br>Your new friends ask you to join them!";
+  storyEventP.appendChild(h3Line1);
+
+  //   const storyEventImg = document.createElement("img");
+  //   storyEventImg.src = (PHOTO OF SCAMMED);
+  //   storyEventP.appendChild(storyEventImg);
+
+  const friendInviteButton = document.createElement("button");
+  friendInviteButton.setAttribute("id", "friendInviteButton");
+  friendInviteButton.innerHTML = "See you there!";
+  friendInviteButton.addEventListener("click", () => {
+    if (friendInviteButton.id === "friendInviteButton") {
+      displaySonnyAngelEventP();
+    }
+  });
+  storyEventP.appendChild(friendInviteButton);
+}
+
+/*-------------------SONNY ANGEL EVENT PAGE (STORY EVENT)----------------------*/
+function displaySonnyAngelEventP() {
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "block";
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML =
+    "You made it to the Sonny Angel Event. <br>It's bustling with people! <br>As you walk around, you notice a crowd surrounding someone. <br>You approach the crowd to find out more...";
+  storyEventP.appendChild(h3Line1);
+
+  //   const storyEventImg = document.createElement("img");
+  //   storyEventImg.src = (PHOTO OF SCAMMED);
+  //   storyEventP.appendChild(storyEventImg);
+
+  const sonnyAngelEventButton = document.createElement("button");
+  sonnyAngelEventButton.setAttribute("id", "sonnyAngelEventButton");
+  sonnyAngelEventButton.innerHTML = "Next";
+  sonnyAngelEventButton.addEventListener("click", () => {
+    if (sonnyAngelEventButton.id === "sonnyAngelEventButton") {
+      console.log("DISPLAY GOLDEN SHISA PAGE");
+    }
+  });
+  storyEventP.appendChild(sonnyAngelEventButton);
+}
+
 /*-----------------------BLIND BOX MAIL PAGE (BLIND BOX EVENT)---------------------------*/
 function displayBlindBoxMailP() {
   storyEventP.style.display = "none";
@@ -1002,9 +1055,120 @@ function displayBlindBoxMailResultP() {
   blindBoxResultButton.setAttribute("id", "blindBoxMailResultButton");
   blindBoxResultButton.addEventListener("click", () => {
     if (blindBoxResultButton.id === "blindBoxMailResultButton") {
-      console.log("display sonny sticker page");
+      displaySonnyStickerP();;
     }
   });
+}
+
+/*-------------------SONNY STICKER PAGE (STORY EVENT)----------------------*/
+function displaySonnyStickerP() {
+  blindBoxResultP.style.display = "none";
+  inventoryP.style.display = "none";
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "block";
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML =
+    "You're scrolling on social media and stumbled upon a profile of an artist making Sonny Angel stickers.";
+  storyEventP.appendChild(h3Line1);
+
+  //   const storyEventImg = document.createElement("img");
+  //   storyEventImg.src = (PHOTO OF STICKERS);
+  //   storyEventP.appendChild(storyEventImg);
+
+  const yesStickerButton = document.createElement("button");
+  yesStickerButton.setAttribute("id", "yesStickerButton");
+  yesStickerButton.innerHTML = "Snag it!";
+  yesStickerButton.addEventListener("click", () => {
+    if (yesStickerButton.id === "yesStickerButton") {
+      displayFriendsGiftP();
+    }
+  });
+  storyEventP.appendChild(yesStickerButton);
+
+  const noStickerButton = document.createElement("button");
+  noStickerButton.setAttribute("id", "noStickerButton");
+  noStickerButton.innerHTML = "Nah, what am I going to do with stickers...";
+  noStickerButton.addEventListener("click", () => {
+    if (noStickerButton.id === "noStickerButton") {
+      displaySonnyAngelEvent2P();
+    }
+  });
+  storyEventP.appendChild(noStickerButton);
+}
+
+/*-----------------------FRIENDS GIFT PAGE (BLIND BOX EVENT)---------------------------*/
+function displayFriendsGiftP() {
+  storyEventP.style.display = "none";
+  clearBlindBoxP();
+  blindBoxP.style.display = "block";
+
+  const h3Line1 = blindBoxP.querySelector("#h3Line1");
+  h3Line1.innerHTML = blindBoxPages[5].h3Line1;
+
+  const h3Line2 = blindBoxP.querySelector("#h3Line2");
+  h3Line2.innerHTML = blindBoxPages[5].h3Line2;
+
+  const blindBoxImg = blindBoxP.querySelector("#blindBoxImg");
+  blindBoxImg.src = blindBoxPages[5].image;
+
+  const blindBoxButton = blindBoxP.querySelector(".blindBoxButton"); //button here is a class
+  blindBoxButton.setAttribute("id", "friendsGiftButton");
+  blindBoxButton.addEventListener("click", () => {
+    if (blindBoxButton.id === "friendsGiftButton") {
+      displayFriendsGiftResultP();
+    }
+  });
+}
+/*-----------------------FRIENDS GIFT RESULT PAGE (BLIND BOX RESULT EVENT)---------------------------*/
+function displayFriendsGiftResultP() {
+  blindBoxP.style.display = "none";
+  clearBlindBoxResultP();
+  blindBoxResultP.style.display = "block";
+
+  const h3Line1 = blindBoxResultP.querySelector("h3");
+  h3Line1.innerHTML = "You opened the blind box and...";
+
+  const randomSonny = getRandomSA(); //randomly selects any sonny
+  const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
+  blindBoxResultImg.src = randomSonny.image;
+  addSonnyToInventory(randomSonny);
+
+  const blindBoxResultButton = blindBoxResultP.querySelector(
+    ".blindBoxResultButton"
+  );
+  blindBoxResultButton.setAttribute("id", "friendsGiftResultButton");
+  blindBoxResultButton.addEventListener("click", () => {
+    if (blindBoxResultButton.id === "friendsGiftResultButton") {
+      displayFriendInviteP();
+    }
+  });
+}
+
+/*-------------------SONNY ANGEL EVENT 2 (STORY EVENT)----------------------*/
+function displaySonnyAngelEvent2P() {
+  inventoryP.style.display = "none";
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "block";
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML =
+    "As you're walking around, you notice many Sonny Angel banners around your local park. <br>You notice a crowd surrounding someone. You approach the crowd to find out more...";
+  storyEventP.appendChild(h3Line1);
+
+  //   const storyEventImg = document.createElement("img");
+  //   storyEventImg.src = (PHOTO OF STICKERS);
+  //   storyEventP.appendChild(storyEventImg);
+
+  const sonnyAngelEvent2Button = document.createElement("button");
+  sonnyAngelEvent2Button.setAttribute("id", "sonnyAngelEvent2Button");
+  sonnyAngelEvent2Button.innerHTML = "Next";
+  sonnyAngelEvent2Button.addEventListener("click", () => {
+    if (sonnyAngelEvent2Button.id === "sonnyAngelEvent2Button") {
+      console.log("DISPLAY GOLDEN SHISA PAGE");
+    }
+  });
+  storyEventP.appendChild(sonnyAngelEvent2Button);
 }
 
 /*-----------------------FORUM TRADE ACCEPT PAGE (TRADE EVENT)---------------------------*/
@@ -1070,7 +1234,7 @@ function displayForumTradeAcceptResultP() {
       if (inventorySelectButton.id === `inventorySelectButton${i}`) {
         inventory.splice(i, 1); //start at index, deletes only 1
         console.log("Current Inventory:", inventory);
-        console.log("display SONNY STICKER page");
+        displaySonnyStickerP();
       }
     });
     inventoryP.appendChild(inventorySelectButton);
