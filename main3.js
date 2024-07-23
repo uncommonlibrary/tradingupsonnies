@@ -178,6 +178,8 @@ function clearInventoryP() {
 }
 /*-------------------------------GAME TITLE PAGE------------------------------*/
 function init() {
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "none";
   titleP.style.display = "block";
 }
 
@@ -692,7 +694,6 @@ function displayRespondTradeInventoryP() {
     inventoryP.appendChild(inventorySelectButton);
   }
 }
-
 
 /*------------------------BEFRIEND SELLER (STORY EVENT)-----------------------*/
 function displayBefriendSellerP() {
@@ -1242,7 +1243,7 @@ function displaySonnyAngelEventP() {
   sonnyAngelEventButton.innerHTML = "Next";
   sonnyAngelEventButton.addEventListener("click", () => {
     if (sonnyAngelEventButton.id === "sonnyAngelEventButton") {
-      console.log("DISPLAY GOLDEN SHISA PAGE");
+      displayGoldenShisaP();
     }
   });
   storyEventP.appendChild(sonnyAngelEventButton);
@@ -1401,7 +1402,7 @@ function displaySonnyAngelEvent2P() {
   sonnyAngelEvent2Button.innerHTML = "Next";
   sonnyAngelEvent2Button.addEventListener("click", () => {
     if (sonnyAngelEvent2Button.id === "sonnyAngelEvent2Button") {
-      console.log("DISPLAY GOLDEN SHISA PAGE");
+      displayGoldenShisaP();
     }
   });
   storyEventP.appendChild(sonnyAngelEvent2Button);
@@ -1475,4 +1476,146 @@ function displayForumTradeAcceptResultP() {
     });
     inventoryP.appendChild(inventorySelectButton);
   }
+}
+/*-------------------FINAL SHISA TRADE (TRADE EVENT)----------------------*/
+function displayGoldenShisaP() {
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "block";
+
+  const h1Line1 = document.createElement("h1");
+  h1Line1.innerHTML = "GET THE GOLDEN SHISA";
+  storyEventP.appendChild(h1Line1);
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML =
+    "You get closer to the crowd and... *gasps* <br>Someone is trading their Golden Shisa!";
+  storyEventP.appendChild(h3Line1);
+
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "https://m.media-amazon.com/images/I/51mWcp23uhL.jpg";
+  storyEventImg.alt = "Sonny Angel Golden Shisa";
+  storyEventP.appendChild(storyEventImg);
+
+  const goldenShisaButton = document.createElement("button");
+  goldenShisaButton.setAttribute("id", "goldenShisaButton");
+  goldenShisaButton.innerHTML = "Present your collection";
+  goldenShisaButton.addEventListener("click", () => {
+    evaluateCollection();
+    console.log("total points:", totalPoints);
+  });
+  storyEventP.appendChild(goldenShisaButton);
+}
+
+let totalPoints = 0;
+function evaluateCollection() {
+  for (let i = 0; i < inventory.length; i++) {
+    totalPoints += inventory[i].points;
+  }
+  // return totalPoints;
+  if (totalPoints >= 250) {
+    displayStarCollectorP();
+  } else if (totalPoints < 250 && totalPoints > 100) {
+    displayCasualCollectorP();
+  } else {
+    displayNewbieCollectorP();
+  }
+  return totalPoints;
+}
+
+/*-----------------GET GOLDEN SHISA (OUTCOME 1)---------------------*/
+function displayStarCollectorP() {
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "block";
+
+  const h1Line1 = document.createElement("h1");
+  h1Line1.innerHTML = "ACCEPTED OFFER";
+  storyEventP.appendChild(h1Line1);
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML =
+    "Congratulations! <br>You got the Golden Shisa! <br>You're a <b>star</b> collector! <br>Rebuild your collection and form new memories along the way.";
+  storyEventP.appendChild(h3Line1);
+
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src =
+    "https://thumbs.coleka.com/media/item/201808/12/sonny-angel-editions-limitees-et-collaborations-terrace-shisa-bouche-ouverte.webp";
+  storyEventImg.alt = "Sonny Angel Golden Shisa";
+  storyEventP.appendChild(storyEventImg);
+
+  const nextLine = document.createElement("br");
+  storyEventP.appendChild(nextLine);
+
+  const starCollectorButton = document.createElement("button");
+  starCollectorButton.setAttribute("id", "starCollectorButton");
+  starCollectorButton.innerHTML = "Play again";
+  starCollectorButton.addEventListener("click", () => {
+    inventory.splice(0, inventory.length); //clear inventory
+    window.location.reload();
+  });
+  storyEventP.appendChild(goldenShisaButton);
+}
+
+/*-----------------CASUAL COLLECTOR (OUTCOME 2)---------------------*/
+function displayCasualCollectorP() {
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "block";
+
+  const h1Line1 = document.createElement("h1");
+  h1Line1.innerHTML = "NO, THANK YOU.";
+  storyEventP.appendChild(h1Line1);
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML =
+    "Not bad for a casual collector! <br>You've built up an impressive collection. <br>Keep trading and collecting, and you might just get the Golden Shisa next time!";
+  storyEventP.appendChild(h3Line1);
+
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src =
+    "https://cdn.shopify.com/s/files/1/0607/8015/1021/files/recently-added-a-bunch-of-new-friends-to-my-collection-v0-ypwuj629si491_1.jpg?v=1678530136";
+  storyEventImg.alt = "A decent-size collection of Sonnies";
+  storyEventP.appendChild(storyEventImg);
+
+  const nextLine = document.createElement("br");
+  storyEventP.appendChild(nextLine);
+
+  const casualCollectorButton = document.createElement("button");
+  casualCollectorButton.setAttribute("id", "casualCollectorButton");
+  casualCollectorButton.innerHTML = "Try again";
+  casualCollectorButton.addEventListener("click", () => {
+    inventory.splice(0, inventory.length); //clear inventory
+    window.location.reload();
+  });
+  storyEventP.appendChild(casualCollectorButton);
+}
+/*-----------------NEWBIE COLLECTOR (OUTCOME 3)---------------------*/
+function displayNewbieCollectorP() {
+  storyEventP.innerHTML = "";
+  storyEventP.style.display = "block";
+
+  const h1Line1 = document.createElement("h1");
+  h1Line1.innerHTML = "NO, THANK YOU.";
+  storyEventP.appendChild(h1Line1);
+
+  const h3Line1 = document.createElement("h3");
+  h3Line1.innerHTML =
+    "Great start! <br>You've got your first few dolls. <br>Keep collecting and trading to build your collection. The Golden Shisa awaits!";
+  storyEventP.appendChild(h3Line1);
+
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src =
+    "https://www.rappler.com/tachyon/2024/01/regular-sonny-angels-scaled.jpg?fit=1024%2C1024";
+  storyEventImg.alt = "A small collection of Sonnies";
+  storyEventP.appendChild(storyEventImg);
+
+  const nextLine = document.createElement("br");
+  storyEventP.appendChild(nextLine);
+
+  const newbieCollectorButton = document.createElement("button");
+  newbieCollectorButton.setAttribute("id", "newbieCollectorButton");
+  newbieCollectorButton.innerHTML = "Try again";
+  newbieCollectorButton.addEventListener("click", () => {
+    inventory.splice(0, inventory.length); //clear inventory
+    window.location.reload();
+  });
+  storyEventP.appendChild(newbieCollectorButton);
 }
