@@ -1,20 +1,54 @@
-/*-------------------------------- Constants --------------------------------*/
-const titleP = document.getElementById("title");
+/*-------------------------------- Constants ------------------------------*/
+const titlePage = document.getElementById("title");
 const playButton = document.getElementById("playButton");
 const instructionButton = document.getElementById("instructionButton");
 
-const blindBoxP = document.getElementById("blindBox");
-const blindBoxResultP = document.getElementById("blindBoxResult");
+const blindBoxPage = document.getElementById("blindBox");
+const blindBoxButton = blindBox.querySelector("#blindBoxButton");
 
-const tradeEventP = document.getElementById("tradeEvent");
-const inventoryP = document.getElementById("inventory");
+const blindBoxResultPage = document.getElementById("blindBoxResult");
 
-const storyEventP = document.getElementById("storyEvent");
+const tradeEventPage = document.getElementById("tradeEvent");
+
+const inventoryPage = document.getElementById("inventory");
 
 const inventory = [];
 
-/*-------------------------------- Blind Box Pages --------------------------------*/
-const blindBoxPages = [
+/*-------------- FUNCTIONS FOR RANDOMISING AND CLEARING-------------------*/
+//to pull only regular sonny angels (FOR FIRST PULL ONLY)
+const regularSAs = sonnyAngels.filter((angel) => angel.type === "regular"); //filters for only regular SAs
+function getRandomRegSA() {
+  const regSAIndex = Math.floor(Math.random() * regularSAs.length); //chooses random index in regulars
+  selectedRegSA = regularSAs[regSAIndex];
+  return selectedRegSA;
+}
+
+function getRandomSA() {
+  const randomSAIndex = Math.floor(Math.random() * sonnyAngels.length); //chooses random index in all
+  selectedSATrade = sonnyAngels[randomSAIndex];
+  return selectedSATrade; //outputs the selected sonny Object
+}
+
+//function to log blindbox sonny to inventory
+function addSonnyToInventory(addedSonny) {
+  inventory.push(addedSonny); //adding randomly selected sonny into player inventory
+  console.log("Current Inventory:", inventory);
+}
+
+function clearInventoryPage() {
+  const inventoryImgs = inventoryPage.querySelectorAll("img");
+  inventoryImgs.forEach((inventoryImg) =>
+    inventoryPage.removeChild(inventoryImg)
+  );
+
+  const inventorySelectButtons = inventoryPage.querySelectorAll("button");
+  inventorySelectButtons.forEach((inventorySelectButton) =>
+    inventoryPage.removeChild(inventorySelectButton)
+  );
+}
+
+/*--------------- BLIND BOX PAGE CONTENTS (TEXTS AND IMAGES)----------------*/
+const blindBoxPageContents = [
   {
     name: "firstSonny",
     h3Line1: "Here's your very first Sonny!",
@@ -68,539 +102,194 @@ const blindBoxPages = [
       "https://m.media-amazon.com/images/I/31jNZcx5vEL._AC_UF894,1000_QL80_.jpg",
   },
 ];
-/*----------------------------------- Trade Pages ------------------------------------*/
-const tradePages = [
+
+/*---------------------- TRADE PAGE CONTENTS (TEXT)------------------------*/
+const tradePageContents = [
   {
     name: "firstTradePage",
-    h3Line1:
-      "Someone responded to your trade request! Here's what they have up for trade. Choose wisely!",
+    h1Line1: "TRADE EVENT",
+    h3Line1: "Someone responded to your trade request!",
+    h3Line2: "Here's what they have up for trade. Choose wisely!",
+    h3Line3: "",
   },
   {
     name: "headOutTrade",
+    h1Line1: "TRADE EVENT",
     h3Line1:
       "You decide to head out for the day and someone notices your Sonny!",
     h3Line2: "They're asking to trade. Here's what they have up for trades:",
+    h3Line3: "",
   },
   {
     name: "forumTradeAccept",
+    h1Line1: "TRADE EVENT",
     h3Line1:
       "Someone responded to your trade request! Here's what they're offering:",
+    h3Line2: "",
+    h3Line3: "",
   },
   {
     name: "cafeTrade",
+    h1Line1: "TRADE EVENT",
     h3Line1: "After your trip to the store, you decide to stop by a cafe.",
     h3Line2: "At the cafe, someone notices your Sonny and asks for a trade!",
     h3Line3: "Here's what they have up for trade:",
   },
   {
     name: "parkTrade",
+    h1Line1: "TRADE EVENT",
     h3Line1:
       "You arrive at the park and there are small groups of people with Sonnies laid out on picnic mats.",
     h3Line2: "Someone is offering to trade! Here's what they have:",
+    h3Line3: "",
   },
   {
     name: "respondTrade",
+    h1Line1: "TRADE EVENT",
     h3Line1: "Someone responded to your trade request!",
     h3Line2: "Here's what they have up for trade:",
-  },
-  {
-    name: "sonnyMiniTradeEvent",
-    h3Line1: "You're at the Sonny Angel Meetup!",
-    h3Line2: "Someone is offering to trade. Choose wisely!",
+    h3Line3: "",
   },
 ];
 
-/*-------------------------------Random Functions------------------------------*/
-//to pull only regular sonny angels (FOR FIRST PULL ONLY)
-const regularSAs = sonnyAngels.filter((angel) => angel.type === "regular"); //filters for only regular SAs
-function getRandomRegSA() {
-  const regSAIndex = Math.floor(Math.random() * regularSAs.length); //chooses random index in regulars
-  selectedRegSA = regularSAs[regSAIndex];
-  return selectedRegSA;
-}
-
-function getRandomSA() {
-  const randomSAIndex = Math.floor(Math.random() * sonnyAngels.length); //chooses random index in all
-  selectedSATrade = sonnyAngels[randomSAIndex];
-  return selectedSATrade; //outputs the selected sonny Object
-}
-
-//function to log blindbox sonny to inventory
-function addSonnyToInventory(addedSonny) {
-  inventory.push(addedSonny); //adding randomly selected sonny into player inventory
-  console.log("Current Inventory:", inventory);
-}
-
-//function to clear blind box page
-function clearBlindBoxP() {
-  const h3Line1 = blindBoxP.querySelector("#h3Line1");
-  const h3Line2 = blindBoxP.querySelector("#h3Line2");
-  const blindBoxImg = blindBoxP.querySelector("#blindBoxImg");
-  const blindBoxButton = blindBoxP.querySelector(".blindBoxButton");
-
-  h3Line1.innerHTML = "";
-  h3Line2.innerHTML = "";
-  blindBoxImg.src = "";
-  blindBoxButton.removeAttribute("id");
-}
-
-//function to clear blind box RESULT page
-function clearBlindBoxResultP() {
-  const h3Line1 = blindBoxResultP.querySelector("h3");
-  const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
-  const blindBoxResultButton = blindBoxResultP.querySelector(
-    ".blindBoxResultButton"
-  );
-
-  h3Line1.innerHTML = "";
-  blindBoxResultImg.src = "";
-  blindBoxResultButton.removeAttribute("id");
-}
-/*-------------------------------GAME TITLE PAGE------------------------------*/
-function init() {
-  titleP.style.display = "block";
-}
-
-init(); //starts game
-
-playButton.addEventListener("click", displayFirstSonnyP);
-//INSERT HOW TO PLAY BUTTON EVENT LISTENER HERE
-
-/*----------------------FIRST SONNY PAGE (FIRST PULL)--------------------------*/
-function displayFirstSonnyP() {
-  titleP.style.display = "none";
-  blindBoxP.style.display = "block";
-
-  const h3Line1 = blindBoxP.querySelector("#h3Line1");
-  h3Line1.innerHTML = blindBoxPages[0].h3Line1;
-
-  const h3Line2 = blindBoxP.querySelector("#h3Line2");
-  h3Line2.innerHTML = blindBoxPages[0].h3Line2;
-
-  const blindBoxImg = blindBoxP.querySelector("#blindBoxImg");
-  blindBoxImg.src = blindBoxPages[0].image;
-
-  const blindBoxButton = blindBoxP.querySelector(".blindBoxButton"); //button here is a class
-  blindBoxButton.setAttribute("id", "firstSonny");
-  blindBoxButton.addEventListener("click", () => {
-    if (blindBoxButton.id === "firstSonny") {
-      displayFirstSonnyResultP();
+/*--------------------------TRADE EVENT CLASS-----------------------------*/
+class TradeEvent {
+  constructor(contentIndex) {
+    this.content = tradePageContents[contentIndex]; //this becomes the object
+    this.h1Line1 = tradeEventPage.querySelector("#h1Line1");
+    this.h3Line1 = tradeEventPage.querySelector("#h3Line1");
+    this.h3Line2 = tradeEventPage.querySelector("#h3Line2");
+    this.h3Line3 = tradeEventPage.querySelector("#h3Line3");
+    this.displayText();
+    this.createTradeOptions();
+  }
+  displayText() {
+    this.h1Line1.innerHTML = this.content.h1Line1;
+    this.h3Line1.innerHTML = this.content.h3Line1;
+    this.h3Line2.innerHTML = this.content.h3Line2;
+    this.h3Line3.innerHTML = this.content.h3Line3;
+  }
+  createTradeOptions() {
+    const tradeOptions = [];
+    for (let i = 0; i < 3; i++) {
+      const tradeOption = getRandomSA();
+      tradeOptions.push(tradeOption);
     }
-  });
+    tradeOptions.forEach((option, i) => {
+      const container = document.createElement("div");
+      container.setAttribute("id", `tradeOption${i}`);
+      tradeEventPage.appendChild(container);
+
+      const tradeOptionImg = document.createElement("img");
+      tradeOptionImg.src = tradeOptions[i].image;
+      tradeOptionImg.setAttribute("id", `tradeOption${i}`);
+      container.appendChild(tradeOptionImg);
+
+      const newLine = document.createElement("br");
+      container.appendChild(newLine);
+
+      const tradeSelectButton = document.createElement("button");
+      tradeSelectButton.setAttribute("id", `tradeSelectButton${i}`);
+      tradeSelectButton.innerHTML = "Select";
+      container.appendChild(tradeSelectButton);
+    });
+  }
 }
-/*--------------------FIRST SONNY RESULT PAGE (FIRST PULL)-----------------------*/
-function displayFirstSonnyResultP() {
-  blindBoxP.style.display = "none";
-  blindBoxResultP.style.display = "block";
 
-  const h3Line1 = blindBoxResultP.querySelector("h3");
+/*---------------------------BLIND BOX CLASS------------------------------*/
+class BlindBoxEvent {
+  constructor(contentIndex) {
+    this.content = blindBoxPageContents[contentIndex];
+    this.h3Line1 = blindBoxPage.querySelector("#h3Line1");
+    this.h3Line2 = blindBoxPage.querySelector("#h3Line2");
+    this.blindBoxImg = blindBoxPage.querySelector("#blindBoxImg");
+    this.blindBoxButton = blindBoxPage.querySelector("#blindBoxButton");
+    this.displayContent();
+  }
+  displayContent() {
+    this.h3Line1.innerHTML = this.content.h3Line1;
+    this.h3Line2.innerHTML = this.content.h3Line2;
+
+    this.blindBoxImg.src = this.content.image;
+  }
+}
+
+/*---------------------------INVENTORY CLASS------------------------------*/
+class InventoryEvent {
+  constructor(inventory) {
+    this.inventory = inventory;
+    this.inventoryPage = document.getElementById("inventory");
+    this.displayInventory();
+  }
+  displayInventory() {
+    clearInventoryPage();
+    for (let i = 0; i < this.inventory.length; i++) {
+      const inventoryImg = document.createElement("img"); //create img element for each inventory item
+      inventoryImg.src = this.inventory[i].image; //gets URL link from inventory
+      inventoryPage.appendChild(inventoryImg);
+
+      const inventorySelectButton = document.createElement("button"); //create button for every inventory option
+      inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
+      inventorySelectButton.innerHTML = "Give this up!";
+      inventorySelectButton.addEventListener("click", () => {
+        if (inventorySelectButton.id === `inventorySelectButton${i}`) {
+          this.inventory.splice(i, 1); //start at index, deletes only 1
+          console.log("Current Inventory:", this.inventory);
+        }
+      });
+      inventoryP.appendChild(inventorySelectButton);
+    }
+  }
+}
+
+/*--------------------------GAME TITLE PAGE------------------------------*/
+function init() {
+  // storyEventPage.innerHTML = "";
+  // storyEventPage.style.display = "none";
+  titlePage.style.display = "block";
+}
+init();
+
+playButton.addEventListener("click", displayFirstSonnyPage);
+
+/*--------------------FIRST SONNY PAGE (BLIND BOX)-----------------------*/
+function displayFirstSonnyPage() {
+  titlePage.style.display = "none";
+  blindBoxPage.style.display = "block";
+
+  const firstSonnyPage = new BlindBoxEvent(0);
+  blindBoxButton.addEventListener("click", displayFirstSonnyResultPage);
+}
+/*------------------FIRST SONNY RESULT (BLIND BOX RESULT)-----------------*/
+//this one is coded bc it uses a special function different from other blind box result pages
+function displayFirstSonnyResultPage() {
+  blindBoxPage.style.display = "none";
+  blindBoxResultPage.style.display = "block";
+
+  const h3Line1 = blindBoxResultPage.querySelector("h3");
   h3Line1.innerHTML =
-    "Hmm... You're not sure if you really like this one. <br> Let's see if you can trade it up!";
+    "Hmm... You're not sure if you really like this one. <br>Let's see if you can trade it up!";
 
-  const startSonny = getRandomRegSA(); //randomly selects regular sonny
-  const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
+  const startSonny = getRandomRegSA(); //only applicable here
+  const blindBoxResultImg =
+    blindBoxResultPage.querySelector("#blindBoxResultImg");
   blindBoxResultImg.src = startSonny.image; //adds URL from startSonny (which is linked to sonnyAngel filtered [])
   addSonnyToInventory(startSonny);
 
-  const blindBoxResultButton = blindBoxResultP.querySelector(
-    ".blindBoxResultButton"
+  const blindBoxResultButton = blindBoxResultPage.querySelector(
+    "#blindBoxResultButton"
   );
-  blindBoxResultButton.setAttribute("id", "firstSonnyResult");
-  blindBoxResultButton.addEventListener("click", () => {
-    if (blindBoxResultButton.id === "firstSonnyResult") {
-      displayFirstTradeP();
-    }
-  });
+  blindBoxResultButton.addEventListener("click", displayFirstTradePage);
 }
-/*------------------------------FIRST TRADE PAGE--------------------------------*/
-function displayFirstTradeP() {
-  blindBoxResultP.style.display = "none";
-  tradeEventP.style.display = "block";
+/*--------------------------FIRST TRADE PAGE-----------------------------*/
+function displayFirstTradePage() {
+  titlePage.style.display = "none";
+  tradeEventPage.style.display = "block";
 
-  const h3Line1 = tradeEventP.querySelector("#h3Line1");
-  h3Line1.innerHTML = tradePages[0].h3Line1;
-  /*--create 3 divs to hold 3 trade options---*/
-  for (let i = 0; i < 3; i++) {
-    const tradeDiv = document.createElement("div");
-    tradeDiv.setAttribute("class", "tradeOption");
-    tradeEventP.appendChild(tradeDiv);
-  }
-  /*---display the 3 trade options----*/
-  const tradeDivs = tradeEventP.querySelectorAll(".tradeOption"); //selects the three trade options
-  const tradeOptions = []; //to store the trade options so they dont disappear after for loop
-
-  /*---for each of the three trade options, do the following:----*/
-  for (let j = 0; j < tradeDivs.length; j++) {
-    //in each div do this (should run 3 times)
-    const tradeOption = getRandomSA(); //generate random sonny
-    tradeOptions.push(tradeOption); //adds trade option to array x3
-
-    //adding images to trade option divs
-    const tradeOptionImg = document.createElement("img"); //create image element in each div
-    tradeOptionImg.src = tradeOption.image; //gets image URL from trade option (so from sonnyAngel [])
-    tradeOptionImg.setAttribute("id", `tradeOption${j}`); //giving specific id to each trade option
-    tradeDivs[j].appendChild(tradeOptionImg); //appends image to specific trade div x3
-
-    //adding select buttons to trade option divs
-    const tradeSelectButton = document.createElement("button");
-    tradeSelectButton.setAttribute("id", `tradeSelectButton${j}`);
-    tradeSelectButton.innerHTML = "Select";
-    tradeSelectButton.addEventListener("click", () => {
-      if (tradeSelectButton.id === `tradeSelectButton${j}`) {
-        inventory.push(tradeOptions[j]); //adds event listener to each button and registers the click to inventory
-        console.log("Chosen Sonny:", tradeOptions[j]);
-        console.log("Current Inventory:", inventory);
-        displayFirstTradeInventoryP();
-      }
-    });
-    tradeDivs[j].appendChild(tradeSelectButton); //appends select button to each trade div
-  }
+  const firstTradePage = new TradeEvent(0);
 }
-
-/*------------------------------FIRST TRADE INVENTORY PAGE--------------------------------*/
-function displayFirstTradeInventoryP() {
-  tradeEventP.style.display = "none";
-  inventoryP.style.display = "block";
-
-  for (let i = 0; i < inventory.length; i++) {
-    const inventoryImg = document.createElement("img"); //create img element for each inventory item
-    inventoryImg.src = inventory[i].image; //gets URL link from inventory
-    inventoryP.appendChild(inventoryImg);
-
-    const inventorySelectButton = document.createElement("button"); //create button for every inventory option
-    inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
-    inventorySelectButton.innerHTML = "Give this up!";
-    inventorySelectButton.addEventListener("click", () => {
-      if (inventorySelectButton.id === `inventorySelectButton${i}`) {
-        inventory.splice(i, 1); //start at index, deletes only 1
-        console.log("Current Inventory:", inventory);
-        displayEndOfTutorialP();
-      }
-    });
-    inventoryP.appendChild(inventorySelectButton);
-  }
-}
-/*---------------------------END OF TUTORIAL PAGE-------------------------------*/
-function displayEndOfTutorialP() {
-  inventoryP.style.display = "none";
-  storyEventP.style.display = "block";
-
-  const h3Line1 = document.createElement("h3");
-  h3Line1.innerHTML = "Yay! You've made your first trade!";
-  storyEventP.appendChild(h3Line1);
-
-  const h3Line2 = document.createElement("h3");
-  h3Line2.innerHTML = "It's time to grow your collection~";
-  storyEventP.appendChild(h3Line2);
-
-  // const storyEventImg = document.createElement("img");
-  // storyEventImg.src = (INSERT HANDSHAKE IMAGE LINK HERE)
-  // storyEventP.appendChild(storyEventImg);
-
-  const lookOnlineButton = document.createElement("button");
-  lookOnlineButton.setAttribute("id", "lookOnlineButton");
-  lookOnlineButton.innerHTML = "Look for Sonnies online";
-  lookOnlineButton.addEventListener("click", goodDealOrNot);
-  storyEventP.appendChild(lookOnlineButton);
-
-  const lookInStoresButton = document.createElement("button");
-  lookInStoresButton.setAttribute("id", "lookInStoresButton");
-  lookInStoresButton.innerHTML = "Try your luck in-stores";
-  lookInStoresButton.addEventListener("click", soldOutOrNot);
-  storyEventP.appendChild(lookInStoresButton);
-}
-
-function soldOutOrNot() {
-  const probability = Math.random(); //generates number between 0 and 1
-  if (probability < 0.5) {
-    displayStoreInStockP();
-  } else {
-    displayStoreSoldOutP();
-  }
-}
-
-function goodDealOrNot() {
-  const probability = Math.random(); //generates number between 0 and 1
-  if (probability < 0.5) {
-    displayGoodDealP();
-  } else {
-    displayNoGoodListingsP();
-  }
-}
-/*----------------------NO GOOD LISTINGS PAGE (STORY EVENT)--------------------*/
-function displayNoGoodListingsP() {
-  storyEventP.innerHTML = "";
-  storyEventP.style.display = "block";
-
-  const h3Line1 = document.createElement("h3");
-  h3Line1.innerHTML = "Hmm, there aren't any good listings today...";
-  storyEventP.appendChild(h3Line1);
-
-  // const storyEventImg = document.createElement("img");
-  // storyEventImg.src = (PIC OF EMPTY SHOP);
-  // storyEventP.appendChild(storyEventImg);
-
-  const noGoodListingsButton = document.createElement("button");
-  noGoodListingsButton.setAttribute("id", "noGoodListingsButton");
-  noGoodListingsButton.innerHTML = "Try your luck in-stores";
-  noGoodListingsButton.addEventListener("click", () => {
-    if (noGoodListingsButton.id === "noGoodListingsButton") {
-      soldOutOrNot();
-    }
-  });
-  storyEventP.appendChild(noGoodListingsButton);
-}
-
-/*----------------------GOOD DEAL PAGE (BLIND BOX EVENT)--------------------*/
-function displayGoodDealP() {
-  storyEventP.innerHTML = "";
-  storyEventP.style.display = "none";
-  clearBlindBoxP();
-  blindBoxP.style.display = "block";
-
-  const h3Line1 = blindBoxP.querySelector("#h3Line1");
-  h3Line1.innerHTML = blindBoxPages[1].h3Line1;
-
-  const h3Line2 = blindBoxP.querySelector("#h3Line2");
-  h3Line2.innerHTML = blindBoxPages[1].h3Line2;
-
-  const blindBoxImg = blindBoxP.querySelector("#blindBoxImg");
-  blindBoxImg.src = blindBoxPages[1].image;
-
-  const blindBoxButton = blindBoxP.querySelector(".blindBoxButton"); //button here is a class
-  blindBoxButton.setAttribute("id", "goodDealButton");
-  blindBoxButton.addEventListener("click", () => {
-    if (blindBoxButton.id === "goodDealButton") {
-      displayGoodDealResultP();
-    }
-  });
-  blindBoxP.appendChild(blindBoxButton);
-}
-
-/*----------------------GOOD DEAL RESULT PAGE (BLIND BOX RESULT)--------------------*/
-function displayGoodDealResultP() {
-  blindBoxP.style.display = "none";
-  clearBlindBoxResultP();
-  blindBoxResultP.style.display = "block";
-
-  const h3Line1 = blindBoxResultP.querySelector("h3");
-  h3Line1.innerHTML = "You opened the blind box and...";
-
-  const randomSonny = getRandomSA(); //randomly selects any sonny
-  const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
-  blindBoxResultImg.src = randomSonny.image;
-  addSonnyToInventory(randomSonny);
-
-  const blindBoxResultButton = blindBoxResultP.querySelector(
-    ".blindBoxResultButton"
-  );
-  blindBoxResultButton.setAttribute("id", "goodDealResultButton");
-  blindBoxResultButton.addEventListener("click", () => {
-    if (blindBoxResultButton.id === "goodDealResultButton") {
-      displayHandmadeClothesP();
-    }
-  });
-}
-
-/*-------------------------HANDMADE CLOTHES PAGE (STORY EVENT)-----------------------*/
-function displayHandmadeClothesP() {
-  blindBoxResultP.style.display = "none";
-  storyEventP.innerHTML = "";
-  storyEventP.style.display = "block";
-
-  const h3Line1 = document.createElement("h3");
-  h3Line1.innerHTML =
-    "As you continue searching online, you found a shop selling handmade clothes for your angel(s)!";
-  storyEventP.appendChild(h3Line1);
-
-  // const storyEventImg = document.createElement("img");
-  // storyEventImg.src = (PHOTO OF CROCHET CLOTHES)
-  // storyEventP.appendChild(storyEventImg);
-
-  const dressUpButton = document.createElement("button");
-  dressUpButton.setAttribute("id", "dressUpButton");
-  dressUpButton.innerHTML = "Dress them up!";
-  dressUpButton.addEventListener("click", () => {
-    if (dressUpButton.id === "dressUpButton") {
-      displayBefriendSellerP();
-    }
-  });
-  storyEventP.appendChild(dressUpButton);
-
-  const noDressUpButton = document.createElement("button");
-  noDressUpButton.setAttribute("id", "noDressUpButton");
-  noDressUpButton.innerHTML = "Nah, I'll pass";
-  noDressUpButton.addEventListener("click", () => {
-    if (noDressUpButton.id === "noDressUpButton") {
-      console.log("display heading out trade event!!");
-    }
-  });
-  storyEventP.appendChild(noDressUpButton);
-}
-
-/*------------------------BEFRIEND SELLER (STORY EVENT)-----------------------*/
-function displayBefriendSellerP() {
-  storyEventP.innerHTML = "";
-  storyEventP.style.display = "block";
-
-  const h3Line1 = document.createElement("h3");
-  h3Line1.innerHTML = "Your Sonnies are looking beautiful!";
-  storyEventP.appendChild(h3Line1);
-
-  const h3Line2 = document.createElement("h3");
-  h3Line2.innerHTML =
-    "You also befriended the seller and they invite you to join their online community.";
-  storyEventP.appendChild(h3Line2);
-
-  // const storyEventImg = document.createElement("img");
-  // storyEventImg.src = (PIC OF ONLINE GROUP CHAT)
-  // storyEventP.appendChild(storyEventImg);
-
-  const befriendSellerButton = document.createElement("button");
-  befriendSellerButton.setAttribute("id", "befriendSellerButton");
-  befriendSellerButton.innerHTML = "Join group";
-  befriendSellerButton.addEventListener("click", () => {
-    if (befriendSellerButton.id === "befriendSellerButton") {
-      displaySonnyAngelForumP();
-    }
-  });
-  storyEventP.appendChild(befriendSellerButton);
-}
-/*---------------------------STORE SOLD OUT PAGE-------------------------------*/
-function displayStoreSoldOutP() {
-  storyEventP.style.display = "block";
-  storyEventP.innerHTML = ""; //clear previous content
-
-  const h3Line1 = document.createElement("h3");
-  h3Line1.innerHTML = "Oh dear, they're sold out for the day!";
-  storyEventP.appendChild(h3Line1);
-
-  // const storyEventImg = document.createElement("img");
-  // storyEventImg.src = (SOLD OUT PHOTO);
-  // storyEventP.appendChild(storyEventImg);
-
-  const storeSoldOutButton = document.createElement("button");
-  storeSoldOutButton.setAttribute("id", "storeSoldOutButton");
-  storeSoldOutButton.innerHTML = "Next";
-  storeSoldOutButton.addEventListener("click", () => {
-    if (storeSoldOutButton.id === "storeSoldOutButton") {
-      displayNewcomerP();
-    }
-  });
-  storyEventP.appendChild(storeSoldOutButton);
-}
-/*---------------------------STORE IN STOCK PAGE (BLIND BOX)-------------------------------*/
-function displayStoreInStockP() {
-  storyEventP.style.display = "none";
-  clearBlindBoxP();
-  blindBoxP.style.display = "block";
-
-  const h3Line1 = blindBoxP.querySelector("#h3Line1");
-  h3Line1.innerHTML = blindBoxPages[2].h3Line1;
-
-  const h3Line2 = blindBoxP.querySelector("#h3Line2");
-  h3Line2.innerHTML = blindBoxPages[2].h3Line2;
-
-  const blindBoxImg = blindBoxP.querySelector("#blindBoxImg");
-  blindBoxImg.src = blindBoxPages[2].image;
-
-  const blindBoxButton = blindBoxP.querySelector(".blindBoxButton"); //button here is a class
-  blindBoxButton.setAttribute("id", "storeInStockButton");
-  blindBoxButton.addEventListener("click", () => {
-    if (blindBoxButton.id === "storeInStockButton") {
-      displayStoreInStockResultP();
-    }
-  });
-}
-/*------------------STORE IN STOCK RESULT PAGE (BLIND BOX RESULT)-----------------------*/
-function displayStoreInStockResultP() {
-  blindBoxP.style.display = "none";
-  clearBlindBoxResultP();
-  blindBoxResultP.style.display = "block";
-
-  const h3Line1 = blindBoxResultP.querySelector("h3");
-  h3Line1.innerHTML = "You opened the blind box and...";
-
-  const randomSonny = getRandomSA(); //randomly selects any sonny
-  const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
-  blindBoxResultImg.src = randomSonny.image;
-  addSonnyToInventory(randomSonny);
-
-  const blindBoxResultButton = blindBoxResultP.querySelector(
-    ".blindBoxResultButton"
-  );
-  blindBoxResultButton.setAttribute("id", "storeInStockResultButton");
-  blindBoxResultButton.addEventListener("click", () => {
-    if (blindBoxResultButton.id === "storeInStockResultButton") {
-      displayNewcomerP();
-    }
-  });
-}
-/*---------------------------NEWCOMER PAGE (STORY EVENT)--------------------------------*/
-function displayNewcomerP() {
-  blindBoxResultP.style.display = "none";
-  storyEventP.innerHTML = ""; //clear previous content
-  storyEventP.style.display = "block";
-
-  const h3Line1 = document.createElement("h3");
-  h3Line1.innerHTML =
-    "You tell the storekeeper that you're new to Sonny Angels.";
-  storyEventP.appendChild(h3Line1);
-
-  const h3Line2 = document.createElement("h3");
-  h3Line2.innerHTML =
-    "They refer you to an online community, where you can meet new <br>people and also find what you're looking for.";
-  storyEventP.appendChild(h3Line2);
-
-  //   const storyEventImg = document.createElement("img");
-  //   storyEventImg.src = (PHOTO OF FRIENDLY SHOPKEEPER);
-  //   storyEventP.appendChild(storyEventImg);
-
-  const newcomerButton = document.createElement("button");
-  newcomerButton.setAttribute("id", "newcomerButton");
-  newcomerButton.innerHTML = "Join group";
-  newcomerButton.addEventListener("click", () => {
-    if (newcomerButton.id === "newcomerButton") {
-      displaySonnyAngelForumP();
-    }
-  });
-  storyEventP.appendChild(newcomerButton);
-}
-/*-----------------------SONNY ANGEL FORUM PAGE (STORY EVENT)---------------------------*/
-function displaySonnyAngelForumP() {
-  storyEventP.innerHTML = "";
-  storyEventP.style.display = "block";
-
-  const h1Line1 = document.createElement("h1");
-  h1Line1.innerHTML = "WELCOME TO THE SONNY ANGEL FORUM.";
-  storyEventP.appendChild(h1Line1);
-
-  const h3Line1 = document.createElement("h3");
-  h3Line1.innerHTML = "You have joined the online forum channel.";
-  storyEventP.appendChild(h3Line1);
-
-  const h3Line2 = document.createElement("h3");
-  h3Line2.innerHTML =
-    "People are posting their handmade Sonny clothes and accessories, offering trades, and selling Sonnies.";
-  storyEventP.appendChild(h3Line2);
-
-  //   const storyEventImg = document.createElement("img");
-  //   storyEventImg.src = (PHOTO OF FORUM CHANNEL);
-  //   storyEventP.appendChild(storyEventImg);
-
-  const forumTradeButton = document.createElement("button");
-  forumTradeButton.setAttribute("id", "forumTradeButton");
-  forumTradeButton.innerHTML = "Ask for trades";
-  forumTradeButton.addEventListener("click", () => {
-    console.log("display forum trade accept page");
-  });
-  storyEventP.appendChild(forumTradeButton);
-
-  const forumBuyButton = document.createElement("button");
-  forumBuyButton.setAttribute("id", "forumBuyButton");
-  forumBuyButton.innerHTML = "Buy a Sonny";
-  forumBuyButton.addEventListener("click", () => {
-    console.log("scammed or not probability");
-  });
-  storyEventP.appendChild(forumBuyButton);
+/*----------------------FIRST TRADE INVENTORY PAGE-----------------------*/
+function displayFirstTradeInventoryPage() {
+  tradeEventPage.style.display = "none";
+  inventoryPage.style.display = "block";
 }

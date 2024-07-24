@@ -103,11 +103,6 @@ const tradePages = [
     h3Line1: "Someone responded to your trade request!",
     h3Line2: "Here's what they have up for trade:",
   },
-  {
-    name: "sonnyMiniTradeEvent",
-    h3Line1: "You're at the Sonny Angel Meetup!",
-    h3Line2: "Someone is offering to trade. Choose wisely!",
-  },
 ];
 
 /*-------------------------------Random Functions------------------------------*/
