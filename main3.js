@@ -163,13 +163,8 @@ function clearTradeEventP() {
 
 //function to clear inventory page
 function clearInventoryP() {
-  const inventoryImgs = inventoryP.querySelectorAll("img");
-  inventoryImgs.forEach((inventoryImg) => inventoryP.removeChild(inventoryImg));
-
-  const inventorySelectButtons = inventoryP.querySelectorAll("button");
-  inventorySelectButtons.forEach((inventorySelectButton) =>
-    inventoryP.removeChild(inventorySelectButton)
-  );
+  const inventoryDivs = inventoryP.querySelectorAll("div");
+  inventoryDivs.forEach((inventoryDiv) => inventoryP.removeChild(inventoryDiv));
 }
 /*-------------------------------GAME TITLE PAGE------------------------------*/
 function init() {
@@ -258,6 +253,9 @@ function displayFirstTradeP() {
     tradeOptionImg.setAttribute("id", `tradeOption${j}`); //giving specific id to each trade option
     tradeDivs[j].appendChild(tradeOptionImg); //appends image to specific trade div x3
 
+    const newLine = document.createElement("br");
+    tradeDivs[j].appendChild(newLine);
+
     //adding select buttons to trade option divs
     const tradeSelectButton = document.createElement("button");
     tradeSelectButton.setAttribute("id", `tradeSelectButton${j}`);
@@ -280,9 +278,16 @@ function displayFirstTradeInventoryP() {
   inventoryP.style.display = "block";
 
   for (let i = 0; i < inventory.length; i++) {
+    const inventoryDiv = document.createElement("div");
+    inventoryDiv.setAttribute("class", "inventoryOption");
+    inventoryP.appendChild(inventoryDiv);
+
     const inventoryImg = document.createElement("img"); //create img element for each inventory item
     inventoryImg.src = inventory[i].image; //gets URL link from inventory
-    inventoryP.appendChild(inventoryImg);
+    inventoryDiv.appendChild(inventoryImg);
+
+    const newLine = document.createElement("br");
+    inventoryDiv.appendChild(newLine);
 
     const inventorySelectButton = document.createElement("button"); //create button for every inventory option
     inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
@@ -294,7 +299,7 @@ function displayFirstTradeInventoryP() {
         displayEndOfTutorialP();
       }
     });
-    inventoryP.appendChild(inventorySelectButton);
+    inventoryDiv.appendChild(inventorySelectButton);
   }
 }
 /*---------------------------END OF TUTORIAL PAGE-------------------------------*/
@@ -313,6 +318,9 @@ function displayEndOfTutorialP() {
   // const storyEventImg = document.createElement("img");
   // storyEventImg.src = (INSERT HANDSHAKE IMAGE LINK HERE)
   // storyEventP.appendChild(storyEventImg);
+
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
 
   const lookOnlineButton = document.createElement("button");
   lookOnlineButton.setAttribute("id", "lookOnlineButton");
@@ -356,6 +364,9 @@ function displayNoGoodListingsP() {
   // const storyEventImg = document.createElement("img");
   // storyEventImg.src = (PIC OF EMPTY SHOP);
   // storyEventP.appendChild(storyEventImg);
+
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
 
   const noGoodListingsButton = document.createElement("button");
   noGoodListingsButton.setAttribute("id", "noGoodListingsButton");
@@ -434,6 +445,9 @@ function displayHandmadeClothesP() {
   // storyEventImg.src = (PHOTO OF CROCHET CLOTHES)
   // storyEventP.appendChild(storyEventImg);
 
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
+
   const dressUpButton = document.createElement("button");
   dressUpButton.setAttribute("id", "dressUpButton");
   dressUpButton.innerHTML = "Dress them up!";
@@ -490,6 +504,9 @@ function displayHeadOutTradeP() {
     tradeOptionImg.setAttribute("id", `tradeOption${j}`); //giving specific id to each trade option
     tradeDivs[j].appendChild(tradeOptionImg); //appends image to specific trade div x3
 
+    const newLine = document.createElement("br");
+    tradeDivs[j].appendChild(newLine);
+
     //adding select buttons to trade option divs
     const tradeSelectButton = document.createElement("button");
     tradeSelectButton.setAttribute("id", `tradeSelectButton${j}`);
@@ -513,9 +530,16 @@ function displayHeadOutTradeResultP() {
   inventoryP.style.display = "block";
 
   for (let i = 0; i < inventory.length; i++) {
+    const inventoryDiv = document.createElement("div");
+    inventoryDiv.setAttribute("class", "inventoryOption");
+    inventoryP.appendChild(inventoryDiv);
+
     const inventoryImg = document.createElement("img"); //create img element for each inventory item
     inventoryImg.src = inventory[i].image; //gets URL link from inventory
-    inventoryP.appendChild(inventoryImg);
+    inventoryDiv.appendChild(inventoryImg);
+
+    const newLine = document.createElement("br");
+    inventoryDiv.appendChild(newLine);
 
     const inventorySelectButton = document.createElement("button"); //create button for every inventory option
     inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
@@ -527,7 +551,7 @@ function displayHeadOutTradeResultP() {
         displayStumbleBookshopP();
       }
     });
-    inventoryP.appendChild(inventorySelectButton);
+    inventoryDiv.appendChild(inventorySelectButton);
   }
 }
 
@@ -545,6 +569,9 @@ function displayStumbleBookshopP() {
   // const storyEventImg = document.createElement("img");
   // storyEventImg.src = (PIC OF ONLINE GROUP CHAT)
   // storyEventP.appendChild(storyEventImg);
+
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
 
   const yesBookshopButton = document.createElement("button");
   yesBookshopButton.setAttribute("id", "yesBookshopButton");
@@ -672,9 +699,16 @@ function displayRespondTradeInventoryP() {
   inventoryP.style.display = "block";
 
   for (let i = 0; i < inventory.length; i++) {
+    const inventoryDiv = document.createElement("div");
+    inventoryDiv.setAttribute("class", "inventoryOption");
+    inventoryP.appendChild(inventoryDiv);
+
     const inventoryImg = document.createElement("img"); //create img element for each inventory item
     inventoryImg.src = inventory[i].image; //gets URL link from inventory
-    inventoryP.appendChild(inventoryImg);
+    inventoryDiv.appendChild(inventoryImg);
+
+    const newLine = document.createElement("br");
+    inventoryDiv.appendChild(newLine);
 
     const inventorySelectButton = document.createElement("button"); //create button for every inventory option
     inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
@@ -686,7 +720,7 @@ function displayRespondTradeInventoryP() {
         displaySonnyAngelEvent2P();
       }
     });
-    inventoryP.appendChild(inventorySelectButton);
+    inventoryDiv.appendChild(inventorySelectButton);
   }
 }
 
@@ -707,6 +741,9 @@ function displayBefriendSellerP() {
   // const storyEventImg = document.createElement("img");
   // storyEventImg.src = (PIC OF ONLINE GROUP CHAT)
   // storyEventP.appendChild(storyEventImg);
+
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
 
   const befriendSellerButton = document.createElement("button");
   befriendSellerButton.setAttribute("id", "befriendSellerButton");
@@ -730,6 +767,9 @@ function displayStoreSoldOutP() {
   // const storyEventImg = document.createElement("img");
   // storyEventImg.src = (SOLD OUT PHOTO);
   // storyEventP.appendChild(storyEventImg);
+
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
 
   const storeSoldOutButton = document.createElement("button");
   storeSoldOutButton.setAttribute("id", "storeSoldOutButton");
@@ -808,6 +848,9 @@ function displayNewcomerP() {
   //   storyEventImg.src = (PHOTO OF FRIENDLY SHOPKEEPER);
   //   storyEventP.appendChild(storyEventImg);
 
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
+
   const newcomerButton = document.createElement("button");
   newcomerButton.setAttribute("id", "newcomerButton");
   newcomerButton.innerHTML = "Join group";
@@ -839,6 +882,9 @@ function displaySonnyAngelForumP() {
   //   const storyEventImg = document.createElement("img");
   //   storyEventImg.src = (PHOTO OF FORUM CHANNEL);
   //   storyEventP.appendChild(storyEventImg);
+
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
 
   const forumTradeButton = document.createElement("button");
   forumTradeButton.setAttribute("id", "forumTradeButton");
@@ -882,6 +928,9 @@ function displayGotScammed() {
   //   storyEventImg.src = (PHOTO OF SCAMMED);
   //   storyEventP.appendChild(storyEventImg);
 
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
+
   const gotScammedButton = document.createElement("button");
   gotScammedButton.setAttribute("id", "gotScammedButton");
   gotScammedButton.innerHTML = "Report to admin and blacklist!";
@@ -915,6 +964,9 @@ function displaySafeCommunityP() {
   //   storyEventImg.src = (PHOTO OF REPORTED);
   //   storyEventP.appendChild(storyEventImg);
 
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
+
   const safeCommunityButton = document.createElement("button");
   safeCommunityButton.setAttribute("id", "safeCommunityButton");
   safeCommunityButton.innerHTML = "Check in-stores";
@@ -947,6 +999,9 @@ function displayStoreSoldOut2P() {
   // const storyEventImg = document.createElement("img");
   // storyEventImg.src = (SOLD OUT PHOTO);
   // storyEventP.appendChild(storyEventImg);
+
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
 
   const storeSoldOut2Button = document.createElement("button");
   storeSoldOut2Button.setAttribute("id", "storeSoldOut2Button");
@@ -1048,6 +1103,9 @@ function displayCafeTradeP() {
     tradeOptionImg.setAttribute("id", `tradeOption${j}`); //giving specific id to each trade option
     tradeDivs[j].appendChild(tradeOptionImg); //appends image to specific trade div x3
 
+    const newLine = document.createElement("br");
+    tradeDivs[j].appendChild(newLine);
+
     //adding select buttons to trade option divs
     const tradeSelectButton = document.createElement("button");
     tradeSelectButton.setAttribute("id", `tradeSelectButton${j}`);
@@ -1071,9 +1129,16 @@ function displayCafeTradeInventoryP() {
   inventoryP.style.display = "block";
 
   for (let i = 0; i < inventory.length; i++) {
+    const inventoryDiv = document.createElement("div");
+    inventoryDiv.setAttribute("class", "inventoryOption");
+    inventoryP.appendChild(inventoryDiv);
+
     const inventoryImg = document.createElement("img"); //create img element for each inventory item
     inventoryImg.src = inventory[i].image; //gets URL link from inventory
-    inventoryP.appendChild(inventoryImg);
+    inventoryDiv.appendChild(inventoryImg);
+
+    const newLine = document.createElement("br");
+    inventoryDiv.appendChild(newLine);
 
     const inventorySelectButton = document.createElement("button"); //create button for every inventory option
     inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
@@ -1085,7 +1150,7 @@ function displayCafeTradeInventoryP() {
         displayStrangerReccoEventP();
       }
     });
-    inventoryP.appendChild(inventorySelectButton);
+    inventoryDiv.appendChild(inventorySelectButton);
   }
 }
 
@@ -1103,6 +1168,9 @@ function displayStrangerReccoEventP() {
   //   const storyEventImg = document.createElement("img");
   //   storyEventImg.src = (PHOTO OF SCAMMED);
   //   storyEventP.appendChild(storyEventImg);
+
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
 
   const strangerReccoEventButton = document.createElement("button");
   strangerReccoEventButton.setAttribute("id", "strangerReccoEventButton");
@@ -1151,6 +1219,9 @@ function displayParkTradeP() {
     tradeOptionImg.setAttribute("id", `tradeOption${j}`); //giving specific id to each trade option
     tradeDivs[j].appendChild(tradeOptionImg); //appends image to specific trade div x3
 
+    const newLine = document.createElement("br");
+    tradeDivs[j].appendChild(newLine);
+
     //adding select buttons to trade option divs
     const tradeSelectButton = document.createElement("button");
     tradeSelectButton.setAttribute("id", `tradeSelectButton${j}`);
@@ -1174,9 +1245,16 @@ function displayParkTradeInventoryP() {
   inventoryP.style.display = "block";
 
   for (let i = 0; i < inventory.length; i++) {
+    const inventoryDiv = document.createElement("div");
+    inventoryDiv.setAttribute("class", "inventoryOption");
+    inventoryP.appendChild(inventoryDiv);
+
     const inventoryImg = document.createElement("img"); //create img element for each inventory item
     inventoryImg.src = inventory[i].image; //gets URL link from inventory
-    inventoryP.appendChild(inventoryImg);
+    inventoryDiv.appendChild(inventoryImg);
+
+    const newLine = document.createElement("br");
+    inventoryDiv.appendChild(newLine);
 
     const inventorySelectButton = document.createElement("button"); //create button for every inventory option
     inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
@@ -1188,7 +1266,7 @@ function displayParkTradeInventoryP() {
         displayFriendInviteP();
       }
     });
-    inventoryP.appendChild(inventorySelectButton);
+    inventoryDiv.appendChild(inventorySelectButton);
   }
 }
 
@@ -1207,6 +1285,9 @@ function displayFriendInviteP() {
   //   const storyEventImg = document.createElement("img");
   //   storyEventImg.src = (PHOTO OF SCAMMED);
   //   storyEventP.appendChild(storyEventImg);
+
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
 
   const friendInviteButton = document.createElement("button");
   friendInviteButton.setAttribute("id", "friendInviteButton");
@@ -1232,6 +1313,9 @@ function displaySonnyAngelEventP() {
   //   const storyEventImg = document.createElement("img");
   //   storyEventImg.src = (PHOTO OF SCAMMED);
   //   storyEventP.appendChild(storyEventImg);
+
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
 
   const sonnyAngelEventButton = document.createElement("button");
   sonnyAngelEventButton.setAttribute("id", "sonnyAngelEventButton");
@@ -1307,6 +1391,9 @@ function displaySonnyStickerP() {
   //   const storyEventImg = document.createElement("img");
   //   storyEventImg.src = (PHOTO OF STICKERS);
   //   storyEventP.appendChild(storyEventImg);
+
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
 
   const yesStickerButton = document.createElement("button");
   yesStickerButton.setAttribute("id", "yesStickerButton");
@@ -1392,6 +1479,9 @@ function displaySonnyAngelEvent2P() {
   //   storyEventImg.src = (PHOTO OF STICKERS);
   //   storyEventP.appendChild(storyEventImg);
 
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
+
   const sonnyAngelEvent2Button = document.createElement("button");
   sonnyAngelEvent2Button.setAttribute("id", "sonnyAngelEvent2Button");
   sonnyAngelEvent2Button.innerHTML = "Next";
@@ -1433,6 +1523,9 @@ function displayForumTradeAcceptP() {
     tradeOptionImg.setAttribute("id", `tradeOption${j}`); //giving specific id to each trade option
     tradeDivs[j].appendChild(tradeOptionImg); //appends image to specific trade div x3
 
+    const newLine = document.createElement("br");
+    tradeDivs[j].appendChild(newLine);
+
     //adding select buttons to trade option divs
     const tradeSelectButton = document.createElement("button");
     tradeSelectButton.setAttribute("id", `tradeSelectButton${j}`);
@@ -1455,9 +1548,16 @@ function displayForumTradeAcceptResultP() {
   inventoryP.style.display = "block";
 
   for (let i = 0; i < inventory.length; i++) {
+    const inventoryDiv = document.createElement("div");
+    inventoryDiv.setAttribute("class", "inventoryOption");
+    inventoryP.appendChild(inventoryDiv);
+
     const inventoryImg = document.createElement("img"); //create img element for each inventory item
     inventoryImg.src = inventory[i].image; //gets URL link from inventory
-    inventoryP.appendChild(inventoryImg);
+    inventoryDiv.appendChild(inventoryImg);
+
+    const newLine = document.createElement("br");
+    inventoryDiv.appendChild(newLine);
 
     const inventorySelectButton = document.createElement("button"); //create button for every inventory option
     inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
@@ -1469,10 +1569,10 @@ function displayForumTradeAcceptResultP() {
         displaySonnyStickerP();
       }
     });
-    inventoryP.appendChild(inventorySelectButton);
+    inventoryDiv.appendChild(inventorySelectButton);
   }
 }
-/*-------------------FINAL SHISA TRADE (TRADE EVENT)----------------------*/
+/*-------------------FINAL SHISA TRADE (STORY EVENT)----------------------*/
 function displayGoldenShisaP() {
   storyEventP.innerHTML = "";
   storyEventP.style.display = "block";
@@ -1490,6 +1590,9 @@ function displayGoldenShisaP() {
   storyEventImg.src = "https://m.media-amazon.com/images/I/51mWcp23uhL.jpg";
   storyEventImg.alt = "Sonny Angel Golden Shisa";
   storyEventP.appendChild(storyEventImg);
+
+  const newLine = document.createElement("br");
+  storyEventP.appendChild(newLine);
 
   const goldenShisaButton = document.createElement("button");
   goldenShisaButton.setAttribute("id", "goldenShisaButton");
