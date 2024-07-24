@@ -259,6 +259,7 @@ function displayFirstTradeP() {
     //adding select buttons to trade option divs
     const tradeSelectButton = document.createElement("button");
     tradeSelectButton.setAttribute("id", `tradeSelectButton${j}`);
+    tradeSelectButton.setAttribute("class", "tradeSelectButton");
     tradeSelectButton.innerHTML = "Select";
     tradeSelectButton.addEventListener("click", () => {
       if (tradeSelectButton.id === `tradeSelectButton${j}`) {
@@ -291,6 +292,7 @@ function displayFirstTradeInventoryP() {
 
     const inventorySelectButton = document.createElement("button"); //create button for every inventory option
     inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
+    inventorySelectButton.setAttribute("class", "inventorySelectButton");
     inventorySelectButton.innerHTML = "Give this up!";
     inventorySelectButton.addEventListener("click", () => {
       if (inventorySelectButton.id === `inventorySelectButton${i}`) {
@@ -510,6 +512,7 @@ function displayHeadOutTradeP() {
     //adding select buttons to trade option divs
     const tradeSelectButton = document.createElement("button");
     tradeSelectButton.setAttribute("id", `tradeSelectButton${j}`);
+    tradeSelectButton.setAttribute("class", "tradeSelectButton");
     tradeSelectButton.innerHTML = "Select";
     tradeSelectButton.addEventListener("click", () => {
       if (tradeSelectButton.id === `tradeSelectButton${j}`) {
@@ -543,6 +546,7 @@ function displayHeadOutTradeResultP() {
 
     const inventorySelectButton = document.createElement("button"); //create button for every inventory option
     inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
+    inventorySelectButton.setAttribute("class", "inventorySelectButton");
     inventorySelectButton.innerHTML = "Give this up!";
     inventorySelectButton.addEventListener("click", () => {
       if (inventorySelectButton.id === `inventorySelectButton${i}`) {
@@ -679,6 +683,7 @@ function displayRespondTradeP() {
     //adding select buttons to trade option divs
     const tradeSelectButton = document.createElement("button");
     tradeSelectButton.setAttribute("id", `tradeSelectButton${j}`);
+    tradeSelectButton.setAttribute("class", "tradeSelectButton");
     tradeSelectButton.innerHTML = "Select";
     tradeSelectButton.addEventListener("click", () => {
       if (tradeSelectButton.id === `tradeSelectButton${j}`) {
@@ -712,6 +717,7 @@ function displayRespondTradeInventoryP() {
 
     const inventorySelectButton = document.createElement("button"); //create button for every inventory option
     inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
+    inventorySelectButton.setAttribute("class", "inventorySelectButton");
     inventorySelectButton.innerHTML = "Give this up!";
     inventorySelectButton.addEventListener("click", () => {
       if (inventorySelectButton.id === `inventorySelectButton${i}`) {
@@ -1109,6 +1115,7 @@ function displayCafeTradeP() {
     //adding select buttons to trade option divs
     const tradeSelectButton = document.createElement("button");
     tradeSelectButton.setAttribute("id", `tradeSelectButton${j}`);
+    tradeSelectButton.setAttribute("class", "tradeSelectButton");
     tradeSelectButton.innerHTML = "Select";
     tradeSelectButton.addEventListener("click", () => {
       if (tradeSelectButton.id === `tradeSelectButton${j}`) {
@@ -1142,6 +1149,7 @@ function displayCafeTradeInventoryP() {
 
     const inventorySelectButton = document.createElement("button"); //create button for every inventory option
     inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
+    inventorySelectButton.setAttribute("class", "inventorySelectButton");
     inventorySelectButton.innerHTML = "Give this up!";
     inventorySelectButton.addEventListener("click", () => {
       if (inventorySelectButton.id === `inventorySelectButton${i}`) {
@@ -1225,6 +1233,7 @@ function displayParkTradeP() {
     //adding select buttons to trade option divs
     const tradeSelectButton = document.createElement("button");
     tradeSelectButton.setAttribute("id", `tradeSelectButton${j}`);
+    tradeSelectButton.setAttribute("class", "tradeSelectButton");
     tradeSelectButton.innerHTML = "Select";
     tradeSelectButton.addEventListener("click", () => {
       if (tradeSelectButton.id === `tradeSelectButton${j}`) {
@@ -1258,6 +1267,7 @@ function displayParkTradeInventoryP() {
 
     const inventorySelectButton = document.createElement("button"); //create button for every inventory option
     inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
+    inventorySelectButton.setAttribute("class", "inventorySelectButton");
     inventorySelectButton.innerHTML = "Give this up!";
     inventorySelectButton.addEventListener("click", () => {
       if (inventorySelectButton.id === `inventorySelectButton${i}`) {
@@ -1529,6 +1539,7 @@ function displayForumTradeAcceptP() {
     //adding select buttons to trade option divs
     const tradeSelectButton = document.createElement("button");
     tradeSelectButton.setAttribute("id", `tradeSelectButton${j}`);
+    tradeSelectButton.setAttribute("class", "tradeSelectButton");
     tradeSelectButton.innerHTML = "Select";
     tradeSelectButton.addEventListener("click", () => {
       if (tradeSelectButton.id === `tradeSelectButton${j}`) {
@@ -1561,6 +1572,7 @@ function displayForumTradeAcceptResultP() {
 
     const inventorySelectButton = document.createElement("button"); //create button for every inventory option
     inventorySelectButton.setAttribute("id", `inventorySelectButton${i}`);
+    inventorySelectButton.setAttribute("class", "inventorySelectButton");
     inventorySelectButton.innerHTML = "Give this up!";
     inventorySelectButton.addEventListener("click", () => {
       if (inventorySelectButton.id === `inventorySelectButton${i}`) {
@@ -1650,7 +1662,7 @@ function displayStarCollectorP() {
     inventory.splice(0, inventory.length); //clear inventory
     window.location.reload();
   });
-  storyEventP.appendChild(goldenShisaButton);
+  storyEventP.appendChild(starCollectorButton);
 }
 
 /*-----------------CASUAL COLLECTOR (OUTCOME 2)---------------------*/

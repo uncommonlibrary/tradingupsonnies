@@ -19,7 +19,7 @@ img {
     position: relative; /*makes this the reference point for absolutely positioned trade button*/
 }
 
-.firstTradeB {
+.tradeSelectButton {
     display: none;
     position:absolute;
     text-align: center;
@@ -28,16 +28,16 @@ img {
     transform: translate(-50%, -50%);  /*offset the element by 50% of its own width and height to center properly in trade option*/
 }
 
-.tradeOption:hover .firstTradeB {
+.tradeOption:hover .tradeSelectButton {
     display: block; /*shows trade button when hover over trade option*/
 }
 
 .inventoryOption {
-    display: inline-block;
+    display: inline-block; /*so pics are side by side*/
     position: relative;
 }
 
-.inventorySelectB {
+.inventorySelectButton {
     display: none;
     position: absolute;
     text-align: center;
@@ -46,6 +46,6 @@ img {
     transform: translate(-50%, -50%);
 }
 
-.inventoryOption:hover .inventorySelectB {
+.inventoryOption:hover .inventorySelectButton {
     display: block;
 }
