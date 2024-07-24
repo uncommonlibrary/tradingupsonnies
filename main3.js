@@ -22,37 +22,32 @@ const blindBoxPages = [
     name: "firstSonny",
     h3Line1: "Here's your very first Sonny!",
     h3Line2: "Let's see what you got!",
-    image:
-      "https://m.media-amazon.com/images/I/31jNZcx5vEL._AC_UF894,1000_QL80_.jpg",
+    image: "images/blindbox.png",
   },
   {
     name: "goodDeal",
     h3Line1: "You found a good deal!",
     h3Line2: "Let's see what you got!",
-    image:
-      "https://m.media-amazon.com/images/I/31jNZcx5vEL._AC_UF894,1000_QL80_.jpg",
+    image: "images/blindbox.png",
   },
   {
     name: "storeInStock",
     h3Line1: "Wew! The store is in-stock today!",
     h3Line2: "Hurry, pull one!",
-    image:
-      "https://m.media-amazon.com/images/I/31jNZcx5vEL._AC_UF894,1000_QL80_.jpg",
+    image: "images/blindbox.png",
   },
   {
     name: "blindBoxMail",
     h3Line1: "Your blind box arrived in the mail today!",
     h3Line2: "Let's see what you got!",
-    image:
-      "https://m.media-amazon.com/images/I/31jNZcx5vEL._AC_UF894,1000_QL80_.jpg",
+    image: "images/blindbox.png",
   },
   {
     name: "bookshopBlindBox",
     h3Line1:
       "You enter the bookshop and it seems like they have some re-sealed blind boxes.",
     h3Line2: "Let's see what you got!",
-    image:
-      "https://m.media-amazon.com/images/I/31jNZcx5vEL._AC_UF894,1000_QL80_.jpg",
+    image: "images/blindbox.png",
   },
   {
     name: "friendsGift",
@@ -60,15 +55,13 @@ const blindBoxPages = [
       "Your peers are starting to notice your growing interest in these little cuties.",
     h3Line2:
       "They decide to help add to your collection by surprising you with one blind box!",
-    image:
-      "https://m.media-amazon.com/images/I/31jNZcx5vEL._AC_UF894,1000_QL80_.jpg",
+    image: "images/blindbox.png",
   },
   {
     name: "storeInStock2",
     h3Line1: "Wew! The store is in-stock today!",
     h3Line2: "Hurry, pull one!",
-    image:
-      "https://m.media-amazon.com/images/I/31jNZcx5vEL._AC_UF894,1000_QL80_.jpg",
+    image: "images/blindbox.png",
   },
 ];
 /*----------------------------------- Trade Pages ------------------------------------*/

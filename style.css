@@ -4,7 +4,7 @@ body {
     font-family: "Comfortaa", sans-serif;
     font-weight: bold;
     text-align: center;
-    margin: 10% auto;
+    margin: 7% auto;
 }
 
 h1, h3 {
@@ -38,7 +38,7 @@ img {
 }
 
 .modal-content {
-    margin: 13.5% auto;
+    margin: 11% auto;
     padding: 20px;
     border: 1px solid #ee545e;
     width: 70%;
@@ -75,9 +75,22 @@ button:hover {
     background-color: #ff939a;
 }
 
+#tradeEvent {
+    display: flex;
+    justify-content: space-between;
+}
+
 .tradeOption {
-    display: inline-block; /*so pics are side by side*/
-    position: relative; /*makes this the reference point for absolutely positioned trade button*/
+    display: inline-block;
+    position: relative;
+    width: 20%;
+    height: auto;
+    margin: 10px;
+}
+
+.tradeOption img{
+    width: 100%;
+    height: auto;
 }
 
 .tradeSelectButton {
@@ -95,7 +108,15 @@ button:hover {
 
 .inventoryOption {
     display: inline-block; /*so pics are side by side*/
-    position: relative;
+    position: relative; /*makes this the reference point for absolutely positioned inventory button*/
+    width: 20%;
+    height: auto;
+    margin: 10px;
+}
+
+.inventoryOption img {
+    width: 100%;
+    height: auto;
 }
 
 .inventorySelectButton {
