@@ -3,6 +3,9 @@ const titleP = document.getElementById("title");
 const playButton = document.getElementById("playButton");
 const instructionButton = document.getElementById("instructionButton");
 
+const modal = document.getElementById("howToPlay");
+const closeButton = document.querySelector(".close");
+
 const blindBoxP = document.getElementById("blindBox");
 const blindBoxResultP = document.getElementById("blindBoxResult");
 
@@ -176,7 +179,15 @@ function init() {
 init(); //starts game
 
 playButton.addEventListener("click", displayFirstSonnyP);
-//INSERT HOW TO PLAY BUTTON EVENT LISTENER HERE
+
+//How to Play segment
+instructionButton.addEventListener("click", () => {
+  modal.style.display = "block";
+});
+
+closeButton.addEventListener("click", () => {
+  modal.style.display = "none";
+});
 
 /*----------------------FIRST SONNY PAGE (FIRST PULL)--------------------------*/
 function displayFirstSonnyP() {
