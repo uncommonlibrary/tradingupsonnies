@@ -134,7 +134,7 @@ button:hover {
 
 @media (max-width: 768px) {
     body {
-        margin: 50% auto;
+        margin: 25% auto;
     }
 
     .modal {
@@ -152,32 +152,51 @@ button:hover {
     margin: 2px 1px;
     }
 
+    img {
+        width: 65%;
+        height: auto;
+    }
+
     #tradeEvent {
+        display: flex;
         flex-direction: column;
         align-items: center;
     }
 
     .tradeOption, .inventoryOption {
         width: 80%;
-        margin: 5px 0;
+        margin: 5px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .tradeOption img {
+    .tradeOption img, .inventoryOption img {
         width: 80%;
         height: auto;
-        display: inline-block;
+        display: block;
+        align-self: center;
     }
     
     .tradeSelectButton,
     .inventorySelectButton {
         position: static;
         display: block;
-        margin: 10px 0;
+        margin: 5px 0;
         transform: none;
+        align-self: center;
     }
     
     .tradeOption:hover .tradeSelectButton,
     .inventoryOption:hover .inventorySelectButton {
         display: block;
+    }
+
+    .tradeSelectButton:focus,
+    .tradeSelectButton:active,
+    .inventorySelectButton:focus,
+    .inventorySelectButton:active {
+        outline: none;
+        align-self: center;
     }
 }
