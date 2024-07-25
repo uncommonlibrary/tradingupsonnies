@@ -110,6 +110,7 @@ function getRandomRegSA() {
   return selectedRegSA;
 }
 
+//generic random sonny angel (includes chance for secret and limited)
 function getRandomSA() {
   const randomSAIndex = Math.floor(Math.random() * sonnyAngels.length); //chooses random index in all
   selectedSATrade = sonnyAngels[randomSAIndex];
@@ -145,6 +146,7 @@ function clearBlindBoxResultP() {
 
   h3Line1.innerHTML = "";
   blindBoxResultImg.src = "";
+  blindBoxResultImg.alt = "";
   blindBoxResultButton.removeAttribute("id");
 }
 
@@ -254,6 +256,7 @@ function displayFirstTradeP() {
     //adding images to trade option divs
     const tradeOptionImg = document.createElement("img"); //create image element in each div
     tradeOptionImg.src = tradeOption.image; //gets image URL from trade option (so from sonnyAngel [])
+    tradeOptionImg.alt = tradeOption.alt;
     tradeOptionImg.setAttribute("id", `tradeOption${j}`); //giving specific id to each trade option
     tradeDivs[j].appendChild(tradeOptionImg); //appends image to specific trade div x3
 
@@ -289,6 +292,7 @@ function displayFirstTradeInventoryP() {
 
     const inventoryImg = document.createElement("img"); //create img element for each inventory item
     inventoryImg.src = inventory[i].image; //gets URL link from inventory
+    inventoryImg.alt = inventory[i].alt;
     inventoryDiv.appendChild(inventoryImg);
 
     const newLine = document.createElement("br");
@@ -321,9 +325,10 @@ function displayEndOfTutorialP() {
   h3Line2.innerHTML = "It's time to grow your collection~";
   storyEventP.appendChild(h3Line2);
 
-  // const storyEventImg = document.createElement("img");
-  // storyEventImg.src = (INSERT HANDSHAKE IMAGE LINK HERE)
-  // storyEventP.appendChild(storyEventImg);
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "images/handshake_deal.png";
+  storyEventImg.alt = "A handshake";
+  storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -367,9 +372,10 @@ function displayNoGoodListingsP() {
   h3Line1.innerHTML = "Hmm, there aren't any good listings today...";
   storyEventP.appendChild(h3Line1);
 
-  // const storyEventImg = document.createElement("img");
-  // storyEventImg.src = (PIC OF EMPTY SHOP);
-  // storyEventP.appendChild(storyEventImg);
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "images/thumbs_down.png";
+  storyEventImg.alt = "A thumbs down";
+  storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -423,6 +429,7 @@ function displayGoodDealResultP() {
   const randomSonny = getRandomSA(); //randomly selects any sonny
   const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
   blindBoxResultImg.src = randomSonny.image;
+  blindBoxResultImg.alt = randomSonny.alt;
   addSonnyToInventory(randomSonny);
 
   const blindBoxResultButton = blindBoxResultP.querySelector(
@@ -447,9 +454,10 @@ function displayHandmadeClothesP() {
     "As you continue searching online, you found a shop selling handmade clothes for your angel(s)!";
   storyEventP.appendChild(h3Line1);
 
-  // const storyEventImg = document.createElement("img");
-  // storyEventImg.src = (PHOTO OF CROCHET CLOTHES)
-  // storyEventP.appendChild(storyEventImg);
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "images/crochet_clothes.png";
+  storyEventImg.alt = "A few pieces of mini crochet clothes";
+  storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -507,6 +515,7 @@ function displayHeadOutTradeP() {
     //adding images to trade option divs
     const tradeOptionImg = document.createElement("img"); //create image element in each div
     tradeOptionImg.src = tradeOption.image; //gets image URL from trade option (so from sonnyAngel [])
+    tradeOptionImg.alt = tradeOption.alt;
     tradeOptionImg.setAttribute("id", `tradeOption${j}`); //giving specific id to each trade option
     tradeDivs[j].appendChild(tradeOptionImg); //appends image to specific trade div x3
 
@@ -543,6 +552,7 @@ function displayHeadOutTradeResultP() {
 
     const inventoryImg = document.createElement("img"); //create img element for each inventory item
     inventoryImg.src = inventory[i].image; //gets URL link from inventory
+    inventoryImg.src = inventory[i].alt;
     inventoryDiv.appendChild(inventoryImg);
 
     const newLine = document.createElement("br");
@@ -574,9 +584,10 @@ function displayStumbleBookshopP() {
     "After your successful trade, you decide to roam around some more <br>and stumble upon a secondhand bookshop.";
   storyEventP.appendChild(h3Line1);
 
-  // const storyEventImg = document.createElement("img");
-  // storyEventImg.src = (PIC OF ONLINE GROUP CHAT)
-  // storyEventP.appendChild(storyEventImg);
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "images/stumble_bookshop.png";
+  storyEventImg.alt = "Bookshop Storefront";
+  storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -637,6 +648,7 @@ function displayBookshopBlindBoxResultP() {
   const randomSonny = getRandomSA(); //randomly selects any sonny
   const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
   blindBoxResultImg.src = randomSonny.image;
+  blindBoxResultImg.alt = randomSonny.alt;
   addSonnyToInventory(randomSonny);
 
   const blindBoxResultButton = blindBoxResultP.querySelector(
@@ -681,6 +693,7 @@ function displayRespondTradeP() {
     //adding images to trade option divs
     const tradeOptionImg = document.createElement("img"); //create image element in each div
     tradeOptionImg.src = tradeOption.image; //gets image URL from trade option (so from sonnyAngel [])
+    tradeOptionImg.alt = tradeOption.alt;
     tradeOptionImg.setAttribute("id", `tradeOption${j}`); //giving specific id to each trade option
     tradeDivs[j].appendChild(tradeOptionImg); //appends image to specific trade div x3
 
@@ -714,6 +727,7 @@ function displayRespondTradeInventoryP() {
 
     const inventoryImg = document.createElement("img"); //create img element for each inventory item
     inventoryImg.src = inventory[i].image; //gets URL link from inventory
+    inventoryImg.alt = inventory[i].alt;
     inventoryDiv.appendChild(inventoryImg);
 
     const newLine = document.createElement("br");
@@ -748,9 +762,10 @@ function displayBefriendSellerP() {
     "You also befriended the seller and they invite you to join their online community.";
   storyEventP.appendChild(h3Line2);
 
-  // const storyEventImg = document.createElement("img");
-  // storyEventImg.src = (PIC OF ONLINE GROUP CHAT)
-  // storyEventP.appendChild(storyEventImg);
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "images/befriend_seller.png";
+  storyEventImg.alt = "Two people laughing and walking";
+  storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -774,9 +789,10 @@ function displayStoreSoldOutP() {
   h3Line1.innerHTML = "Oh dear, they're sold out for the day!";
   storyEventP.appendChild(h3Line1);
 
-  // const storyEventImg = document.createElement("img");
-  // storyEventImg.src = (SOLD OUT PHOTO);
-  // storyEventP.appendChild(storyEventImg);
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "images/sold_out.png";
+  storyEventImg.alt = "Sold Out sign";
+  storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -826,6 +842,7 @@ function displayStoreInStockResultP() {
   const randomSonny = getRandomSA(); //randomly selects any sonny
   const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
   blindBoxResultImg.src = randomSonny.image;
+  blindBoxResultImg.alt = randomSonny.alt;
   addSonnyToInventory(randomSonny);
 
   const blindBoxResultButton = blindBoxResultP.querySelector(
@@ -854,9 +871,10 @@ function displayNewcomerP() {
     "They refer you to an online community, where you can meet new <br>people and also find what you're looking for.";
   storyEventP.appendChild(h3Line2);
 
-  //   const storyEventImg = document.createElement("img");
-  //   storyEventImg.src = (PHOTO OF FRIENDLY SHOPKEEPER);
-  //   storyEventP.appendChild(storyEventImg);
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "images/friendly_shopkeeper.png";
+  storyEventImg.alt = "A friendly shopkeeper";
+  storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -889,9 +907,10 @@ function displaySonnyAngelForumP() {
     "People are posting their handmade Sonny clothes and accessories, offering trades, and selling Sonnies.";
   storyEventP.appendChild(h3Line2);
 
-  //   const storyEventImg = document.createElement("img");
-  //   storyEventImg.src = (PHOTO OF FORUM CHANNEL);
-  //   storyEventP.appendChild(storyEventImg);
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "images/sonny_forum_channel.png";
+  storyEventImg.alt = "A smartphone depicting the Sonny Angel forum channel";
+  storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -934,9 +953,10 @@ function displayGotScammed() {
   h3Line1.innerHTML = "You got scammed!";
   storyEventP.appendChild(h3Line1);
 
-  //   const storyEventImg = document.createElement("img");
-  //   storyEventImg.src = (PHOTO OF SCAMMED);
-  //   storyEventP.appendChild(storyEventImg);
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "images/got_scammed.png";
+  storyEventImg.alt = "A scam warning sign";
+  storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -970,9 +990,10 @@ function displaySafeCommunityP() {
     "Still annoyed, you decide to continue your search in-stores.";
   storyEventP.appendChild(h3Line2);
 
-  //   const storyEventImg = document.createElement("img");
-  //   storyEventImg.src = (PHOTO OF REPORTED);
-  //   storyEventP.appendChild(storyEventImg);
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "images/report_to_admin.png";
+  storyEventImg.alt = "A smartphone with a sign reported over it";
+  storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -1006,9 +1027,10 @@ function displayStoreSoldOut2P() {
   h3Line1.innerHTML = "Oh dear, they're sold out for the day!";
   storyEventP.appendChild(h3Line1);
 
-  // const storyEventImg = document.createElement("img");
-  // storyEventImg.src = (SOLD OUT PHOTO);
-  // storyEventP.appendChild(storyEventImg);
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "images/sold_out.png";
+  storyEventImg.alt = "A sold out sign";
+  storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -1060,6 +1082,7 @@ function displayStoreInStock2ResultP() {
   const randomSonny = getRandomSA(); //randomly selects any sonny
   const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
   blindBoxResultImg.src = randomSonny.image;
+  blindBoxResultImg.alt = randomSonny.alt;
   addSonnyToInventory(randomSonny);
 
   const blindBoxResultButton = blindBoxResultP.querySelector(
@@ -1110,6 +1133,7 @@ function displayCafeTradeP() {
     //adding images to trade option divs
     const tradeOptionImg = document.createElement("img"); //create image element in each div
     tradeOptionImg.src = tradeOption.image; //gets image URL from trade option (so from sonnyAngel [])
+    tradeOptionImg.alt = tradeOption.alt;
     tradeOptionImg.setAttribute("id", `tradeOption${j}`); //giving specific id to each trade option
     tradeDivs[j].appendChild(tradeOptionImg); //appends image to specific trade div x3
 
@@ -1146,6 +1170,7 @@ function displayCafeTradeInventoryP() {
 
     const inventoryImg = document.createElement("img"); //create img element for each inventory item
     inventoryImg.src = inventory[i].image; //gets URL link from inventory
+    inventoryImg.alt = inventory[i].alt;
     inventoryDiv.appendChild(inventoryImg);
 
     const newLine = document.createElement("br");
@@ -1177,9 +1202,10 @@ function displayStrangerReccoEventP() {
     "After the trade, the stranger tells you about another small trade event happening later.";
   storyEventP.appendChild(h3Line1);
 
-  //   const storyEventImg = document.createElement("img");
-  //   storyEventImg.src = (PHOTO OF SCAMMED);
-  //   storyEventP.appendChild(storyEventImg);
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "images/stranger_recco.png";
+  storyEventImg.alt = "A person holding a cup of coffee and smiling";
+  storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -1228,6 +1254,7 @@ function displayParkTradeP() {
     //adding images to trade option divs
     const tradeOptionImg = document.createElement("img"); //create image element in each div
     tradeOptionImg.src = tradeOption.image; //gets image URL from trade option (so from sonnyAngel [])
+    tradeOptionImg.alt = tradeOption.alt;
     tradeOptionImg.setAttribute("id", `tradeOption${j}`); //giving specific id to each trade option
     tradeDivs[j].appendChild(tradeOptionImg); //appends image to specific trade div x3
 
@@ -1264,6 +1291,7 @@ function displayParkTradeInventoryP() {
 
     const inventoryImg = document.createElement("img"); //create img element for each inventory item
     inventoryImg.src = inventory[i].image; //gets URL link from inventory
+    inventoryImg.alt = inventory[i].alt;
     inventoryDiv.appendChild(inventoryImg);
 
     const newLine = document.createElement("br");
@@ -1296,9 +1324,10 @@ function displayFriendInviteP() {
     "The online community is astir with talks of an upcoming Sonny Angel event. <br>Your new friends ask you to join them!";
   storyEventP.appendChild(h3Line1);
 
-  //   const storyEventImg = document.createElement("img");
-  //   storyEventImg.src = (PHOTO OF SCAMMED);
-  //   storyEventP.appendChild(storyEventImg);
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "images/friend_invite.png";
+  storyEventImg.alt = "Two people looking excited";
+  storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -1324,9 +1353,10 @@ function displaySonnyAngelEventP() {
     "You made it to the Sonny Angel Event. <br>It's bustling with people! <br>As you walk around, you notice a crowd surrounding someone. <br>You approach the crowd to find out more...";
   storyEventP.appendChild(h3Line1);
 
-  //   const storyEventImg = document.createElement("img");
-  //   storyEventImg.src = (PHOTO OF SCAMMED);
-  //   storyEventP.appendChild(storyEventImg);
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "images/crowd.png";
+  storyEventImg.alt = "A crowd of people";
+  storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -1377,6 +1407,7 @@ function displayBlindBoxMailResultP() {
   const randomSonny = getRandomSA(); //randomly selects any sonny
   const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
   blindBoxResultImg.src = randomSonny.image;
+  blindBoxResultImg.alt = randomSonny.alt;
   addSonnyToInventory(randomSonny);
 
   const blindBoxResultButton = blindBoxResultP.querySelector(
@@ -1399,12 +1430,13 @@ function displaySonnyStickerP() {
 
   const h3Line1 = document.createElement("h3");
   h3Line1.innerHTML =
-    "You're scrolling on social media and stumbled upon a profile of an artist making Sonny Angel stickers.";
+    "You're scrolling on social media and stumbled upon someone selling Sonny Angel stickers.";
   storyEventP.appendChild(h3Line1);
 
-  //   const storyEventImg = document.createElement("img");
-  //   storyEventImg.src = (PHOTO OF STICKERS);
-  //   storyEventP.appendChild(storyEventImg);
+  const storyEventImg = document.createElement("img");
+  storyEventImg.src = "images/sonny_sticker.png";
+  storyEventImg.alt = "A Sonny Angel sticker pack";
+  storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -1465,6 +1497,7 @@ function displayFriendsGiftResultP() {
   const randomSonny = getRandomSA(); //randomly selects any sonny
   const blindBoxResultImg = blindBoxResultP.querySelector("#blindBoxResultImg");
   blindBoxResultImg.src = randomSonny.image;
+  blindBoxResultImg.alt = randomSonny.alt;
   addSonnyToInventory(randomSonny);
 
   const blindBoxResultButton = blindBoxResultP.querySelector(
@@ -1534,6 +1567,7 @@ function displayForumTradeAcceptP() {
     //adding images to trade option divs
     const tradeOptionImg = document.createElement("img"); //create image element in each div
     tradeOptionImg.src = tradeOption.image; //gets image URL from trade option (so from sonnyAngel [])
+    tradeOptionImg.alt = tradeOption.alt;
     tradeOptionImg.setAttribute("id", `tradeOption${j}`); //giving specific id to each trade option
     tradeDivs[j].appendChild(tradeOptionImg); //appends image to specific trade div x3
 
@@ -1569,6 +1603,7 @@ function displayForumTradeAcceptResultP() {
 
     const inventoryImg = document.createElement("img"); //create img element for each inventory item
     inventoryImg.src = inventory[i].image; //gets URL link from inventory
+    inventoryImg.alt = inventory[i].alt;
     inventoryDiv.appendChild(inventoryImg);
 
     const newLine = document.createElement("br");
@@ -1651,8 +1686,7 @@ function displayStarCollectorP() {
   storyEventP.appendChild(h3Line1);
 
   const storyEventImg = document.createElement("img");
-  storyEventImg.src =
-    "https://thumbs.coleka.com/media/item/201808/12/sonny-angel-editions-limitees-et-collaborations-terrace-shisa-bouche-ouverte.webp";
+  storyEventImg.src = "images/golden_shisa.png";
   storyEventImg.alt = "Sonny Angel Golden Shisa";
   storyEventP.appendChild(storyEventImg);
 
