@@ -16,6 +16,10 @@ In this game, you have to grow your Sonny collection by choosing options that wi
 
 ## Getting Started
 
+![Screenshot of game's title page](./images/title_page_screenshot.png)
+
+Play the game [here](https://uncommonlibrary.github.io/tradingupsonnies/).
+
 Cycle through different options with each click! Certain events have different probabilities of happening, and trade options and blind box results are randomised each time.
 
 Every Sonny has a certain market value. Make the right trades or get lucky to increase your collection’s value.
@@ -28,9 +32,11 @@ See how I planned this game [here](https://miro.com/app/board/uXjVKyOmHVw=/?shar
 
 ## Technologies Used
 
-HTML, CSS, and JavaScript
+HTML, CSS, JavaScript, and Procreate.
 
 ## Next Steps
+
+- Condensing the code of certain functions.
 
 - Expand the Sonny Angel database and include more categorisations.
 

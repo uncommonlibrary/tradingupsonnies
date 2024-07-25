@@ -67,7 +67,7 @@ const sonnyAngels = [
     type: "regular",
     points: 10,
     image: "images/carrot.png",
-    alt: "Regular Carrot Sonny Angel"
+    alt: "Regular Carrot Sonny Angel",
   },
   {
     name: "Carnation",
@@ -176,7 +176,7 @@ const sonnyAngels = [
     points: 23,
     image:
       "https://media.karousell.com/media/photos/products/2024/1/30/wts_sonny_angel_sweets_series__1706601441_abb42121_progressive.jpg",
-    alt: "Regular Strawberry Shortcake Sonny Angel"
+    alt: "Regular Strawberry Shortcake Sonny Angel",
   },
   {
     name: "Cow",
