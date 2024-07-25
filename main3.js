@@ -1522,9 +1522,10 @@ function displaySonnyAngelEvent2P() {
     "As you're walking around, you notice many Sonny Angel banners around your local park. <br>You notice a crowd surrounding someone. You approach the crowd to find out more...";
   storyEventP.appendChild(h3Line1);
 
-  //   const storyEventImg = document.createElement("img");
-  //   storyEventImg.src = (PHOTO OF STICKERS);
-  //   storyEventP.appendChild(storyEventImg);
+    const storyEventImg = document.createElement("img");
+    storyEventImg.src = "images/park_banner.png";
+    storyEventImg.alt = "A park bench with a banner above";
+    storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
   storyEventP.appendChild(newLine);
@@ -1638,8 +1639,8 @@ function displayGoldenShisaP() {
   storyEventP.appendChild(h3Line1);
 
   const storyEventImg = document.createElement("img");
-  storyEventImg.src = "https://m.media-amazon.com/images/I/51mWcp23uhL.jpg";
-  storyEventImg.alt = "Sonny Angel Golden Shisa";
+  storyEventImg.src = "images/final_shisa_trade.png";
+  storyEventImg.alt = "Someone holding up their Golden Shisa Sonny Angel";
   storyEventP.appendChild(storyEventImg);
 
   const newLine = document.createElement("br");
@@ -1718,9 +1719,8 @@ function displayCasualCollectorP() {
   storyEventP.appendChild(h3Line1);
 
   const storyEventImg = document.createElement("img");
-  storyEventImg.src =
-    "https://cdn.shopify.com/s/files/1/0607/8015/1021/files/recently-added-a-bunch-of-new-friends-to-my-collection-v0-ypwuj629si491_1.jpg?v=1678530136";
-  storyEventImg.alt = "A decent-size collection of Sonnies";
+  storyEventImg.src = "images/casual.png";
+  storyEventImg.alt = "A person sitting on the ground, happy";
   storyEventP.appendChild(storyEventImg);
 
   const nextLine = document.createElement("br");
@@ -1750,9 +1750,8 @@ function displayNewbieCollectorP() {
   storyEventP.appendChild(h3Line1);
 
   const storyEventImg = document.createElement("img");
-  storyEventImg.src =
-    "https://www.rappler.com/tachyon/2024/01/regular-sonny-angels-scaled.jpg?fit=1024%2C1024";
-  storyEventImg.alt = "A small collection of Sonnies";
+  storyEventImg.src = "images/newbie.png";
+  storyEventImg.alt = "A person skipping along, happy";
   storyEventP.appendChild(storyEventImg);
 
   const nextLine = document.createElement("br");

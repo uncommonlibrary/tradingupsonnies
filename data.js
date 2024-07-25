@@ -3,152 +3,140 @@ const sonnyAngels = [
     name: "Peanut",
     type: "secret",
     points: 200,
-    image:
-      "https://www.sonnyangel.com/renewal/wp-content/uploads/2022/05/img_creatures_figure13_n4.png",
+    image: "images/peanut.png",
     alt: "Secret Peanut Sonny Angel",
   },
   {
     name: "Turtle",
     type: "secret",
     points: 150,
-    image:
-      "https://media.karousell.com/media/photos/products/2024/5/10/brand_new_sonny_angel_marine_s_1715315528_55d8c14b_progressive.jpg",
+    image: "images/turtle.png",
     alt: "Secret Turtle Sonny Angel",
   },
   {
     name: "Sprout",
     type: "secret",
     points: 200,
-    image: "https://i.ebayimg.com/images/g/RwwAAOSwUZ9lBGLg/s-l1200.jpg",
+    image: "images/sprout.png",
     alt: "Secret Sprout Sonny Angel",
   },
   {
     name: "GOL Chocolate",
     type: "limited",
     points: 22,
-    image:
-      "https://media.karousell.com/media/photos/products/2024/1/29/wts_sonny_angel_valentines_gif_1706517226_37a381d3_progressive.jpg",
+    image: "images/GOL_chocolate.png",
     alt: "Limited Gifts of Love Chocolate Sonny Angel",
   },
   {
     name: "Cat Life Siamese",
     type: "limited",
     points: 32,
-    image:
-      "https://i.pinimg.com/474x/ea/f3/26/eaf3269b79389798e5ad4c9e5eba4ede.jpg",
+    image: "images/cat_life_siamese.png",
     alt: "Limited Cat Life Siamese Sonny Angel",
   },
   {
     name: "Jeju Rabbit",
     type: "limited",
     points: 37,
-    image: "https://i.ebayimg.com/images/g/QDIAAOSwPAZkt5fp/s-l1200.webp",
+    image: "images/jeju_rabbit.png",
     alt: "Limited Jeju Rabbit Sonny Angel",
   },
   {
     name: "Lime Dog",
     type: "limited",
     points: 42,
-    image:
-      "https://media.karousell.com/media/photos/products/2024/4/5/sonny_angel_candy_store_lime_d_1712305993_839390f8_progressive.jpg",
+    image: "images/lime_dog.png",
     alt: "Limited Lime Dog Sonny Angel",
   },
   {
     name: "Seoul Strawberry",
     type: "limited",
     points: 45,
-    image: "https://i.ebayimg.com/images/g/BiwAAOSwZPZjKcOt/s-l1600.jpg",
+    image: "images/seoul_strawberry.png",
     alt: "Limited Seoul Strawberry Sonny Angel",
   },
   {
     name: "Easy Moment",
     type: "limited",
     points: 95,
-    image:
-      "https://toysez.com/cdn/shop/files/65_43c14cde-0d96-4301-bff7-8aff0d6efedb.jpg?v=1698916756",
+    image: "images/easy_moment.png",
     alt: "Limited Enjoy the Moment Easy Moment Sonny Angel",
   },
   {
     name: "Carrot",
     type: "regular",
     points: 10,
-    image: "https://toysez.com/cdn/shop/files/Carrot_1.jpg?v=1698478550",
+    image: "images/carrot.png",
     alt: "Regular Carrot Sonny Angel"
   },
   {
     name: "Carnation",
     type: "regular",
     points: 10,
-    image:
-      "https://media.karousell.com/media/photos/products/2023/9/7/sonny_angel_flower_carnation_1694092655_771ba9df.jpg",
+    image: "images/carnation.png",
     alt: "Regular Carnation Sonny Angel",
   },
   {
     name: "Tiger",
     type: "regular",
     points: 11,
-    image:
-      "https://www.sonnyangel.com/renewal/wp-content/uploads/cache/2018/10/new_tiger_01-1/319147086.jpg",
+    image: "images/tiger.png",
     alt: "Regular Tiger Sonny Angel",
   },
   {
     name: "Dragonfruit",
     type: "regular",
     points: 12,
-    image: "https://i.ebayimg.com/images/g/Ah0AAOSwUZZj-kLe/s-l1600.jpg",
+    image: "images/dragonfruit.png",
     alt: "Regular Dragonfruit Sonny Angel",
   },
   {
     name: "Giraffe",
     type: "regular",
     points: 13,
-    image:
-      "https://media.karousell.com/media/photos/products/2024/4/4/sonny_angel_animals_series_3_g_1712239546_3882af8f.jpg",
+    image: "images/giraffe.png",
     alt: "Regular Giraffe Sonny Angel",
   },
   {
     name: "Sheep",
     type: "regular",
     points: 14,
-    image:
-      "https://www.sonnyangel.com/renewal/wp-content/uploads/cache/2018/10/new_sheep_01-1/4000609628.jpg",
+    image: "images/sheep.png",
     alt: "Regular Sheep Sonny Angel",
   },
   {
     name: "Fawn",
     type: "regular",
     points: 14,
-    image:
-      "https://www.sonnyangel.com/renewal/wp-content/uploads/cache/2018/10/new_fawn_01-1/3687274367.jpg",
+    image: "images/fawn.png",
     alt: "Regular Fawn Sonny Angel",
   },
   {
     name: "Tomato",
     type: "regular",
     points: 16,
-    image: "https://i.ebayimg.com/images/g/VnkAAOSw64Nktgfc/s-l1200.webp",
+    image: "images/tomato.png",
     alt: "Regular Tomato Sonny Angel",
   },
   {
     name: "Poodle",
     type: "regular",
     points: 17,
-    image: "https://i.ebayimg.com/images/g/b6wAAOSwg0hk6TP~/s-l1600.jpg",
+    image: "images/poodle.png",
     alt: "Regular Poodle Sonny Angel",
   },
   {
     name: "Poppy",
     type: "regular",
     points: 17,
-    image: "https://i.ebayimg.com/images/g/upMAAOSwKwVjT2r8/s-l1600.jpg",
+    image: "images/poppy.png",
     alt: "Regular Poppy Sonny Angel",
   },
   {
     name: "Dalmatian",
     type: "regular",
     points: 18,
-    image:
-      "https://media.karousell.com/media/photos/products/2023/12/17/wttwts_sonny_angel_dalmatian_1702799642_a00994b5_progressive.jpg",
+    image: "images/dalmatian.png",
     alt: "Regular Dalmatian Sonny Angel",
   },
   {

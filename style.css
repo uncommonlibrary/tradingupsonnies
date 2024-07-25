@@ -4,7 +4,7 @@ body {
     font-family: "Comfortaa", sans-serif;
     font-weight: bold;
     text-align: center;
-    margin: 7% auto;
+    margin: 5% auto;
 }
 
 h1, h3 {
@@ -19,7 +19,7 @@ section {
 
 /*fix image size on screen -not working how to adjust*/
 img {
-    width: 17%;
+    width: 20%;
     height: auto;
 }
 
