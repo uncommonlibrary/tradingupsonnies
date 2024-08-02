@@ -38,7 +38,7 @@ img {
 }
 
 .modal-content {
-    margin: 11% auto;
+    margin: 6% auto;
     padding: 20px;
     border: 1px solid #ee545e;
     width: 70%;
@@ -144,7 +144,7 @@ button:hover {
 
     .modal-content {
         width: 70%;
-        margin: 20% auto;
+        margin: 8% auto;
     }
 
     button {

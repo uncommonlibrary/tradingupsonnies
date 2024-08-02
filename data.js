@@ -144,22 +144,21 @@ const sonnyAngels = [
     type: "regular",
     points: 18,
     image:
-      "https://media.karousell.com/media/photos/products/2024/1/13/sonny_angel_monkey_1705168561_ac54d245_progressive.jpg",
+      "images/monkey.png",
     alt: "Regular Monkey Sonny Angel",
   },
   {
     name: "Calico",
     type: "regular",
     points: 18,
-    image: "https://toysez.com/cdn/shop/files/IMG_9548.jpg?v=1702241967",
+    image: "images/calico.png",
     alt: "Regular Calico Sonny Angel",
   },
   {
     name: "Frog",
     type: "regular",
     points: 20,
-    image:
-      "https://www.sonnyangel.com/renewal/wp-content/uploads/cache/2018/10/new_frog_01-1/679203890.jpg",
+    image: "images/frog.png",
     alt: "Regular Frog Sonny Angel",
   },
   {
@@ -167,7 +166,7 @@ const sonnyAngels = [
     type: "regular",
     points: 20,
     image:
-      "https://media.karousell.com/media/photos/products/2023/12/31/sonny_angel__pudding_1704016708_ba44939b.jpg",
+      "images/pudding.png",
     alt: "Regular Pudding Sonny Angel",
   },
   {
@@ -175,7 +174,7 @@ const sonnyAngels = [
     type: "regular",
     points: 23,
     image:
-      "https://media.karousell.com/media/photos/products/2024/1/30/wts_sonny_angel_sweets_series__1706601441_abb42121_progressive.jpg",
+      "images/strawberry_shortcake.png",
     alt: "Regular Strawberry Shortcake Sonny Angel",
   },
   {
@@ -183,14 +182,14 @@ const sonnyAngels = [
     type: "regular",
     points: 25,
     image:
-      "https://media.karousell.com/media/photos/products/2023/9/12/wtt_sonny_angel_cow_to_duck_or_1694532332_b1883340.jpg",
+      "images/cow.png",
     alt: "Regular Cow Sonny Angel",
   },
   {
     name: "Lilly Bell",
     type: "regular",
     points: 25,
-    image: "https://i.ebayimg.com/images/g/8XoAAOSwSB9lk6eG/s-l1200.jpg",
+    image: "images/lilly_bell.png",
     alt: "Regular Lilly Bell Sonny Angel",
   },
   {
@@ -198,7 +197,7 @@ const sonnyAngels = [
     type: "regular",
     points: 30,
     image:
-      "https://media.karousell.com/media/photos/products/2023/12/5/wtt_sonny_angel_animal_ver_1___1701803299_7dd328bd.jpg",
+      "images/rabbit.png",
     alt: "Regular Rabbit Sonny Angel",
   },
   {
@@ -206,7 +205,7 @@ const sonnyAngels = [
     type: "regular",
     points: 35,
     image:
-      "https://media.karousell.com/media/photos/products/2024/4/25/bnif_sonny_angel_fruit_series__1714023067_23825c28_progressive.jpg",
+      "images/strawberry.png",
     alt: "Regular Strawberry Sonny Angel",
   },
   {
@@ -214,7 +213,7 @@ const sonnyAngels = [
     type: "regular",
     points: 40,
     image:
-      "https://media.karousell.com/media/photos/products/2024/3/9/standing_lop_ear_sonny_angel_1709976348_9997e9d3_progressive.jpg",
+      "images/lop_ear.png",
     alt: "Regular Lop Ear Rabbit Sonny Angel",
   },
 ];
